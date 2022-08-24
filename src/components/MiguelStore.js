@@ -1,12 +1,12 @@
 import {useState} from "react";
 import {Outlet} from "react-router";
 
-export default function Locations(props) {
+export default function MiguelStore(props) {
 
 
     return (
         <>
-            <h1>Locations</h1>
+            <h1>Welcome to Miguel Store</h1>
 
             <Outlet/>
         </>

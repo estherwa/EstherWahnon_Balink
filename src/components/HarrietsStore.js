@@ -4,11 +4,11 @@ import {Outlet} from "react-router";
 
 
 
-export default function Forecast(props) {
+export default function HarrietsStore(props) {
     return (
         <>
 
-            <h1> this isForecast</h1>
+            <h1>Welcome to Harriet Store</h1>
             <Outlet/>
 
         </>
