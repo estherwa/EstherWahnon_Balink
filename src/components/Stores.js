@@ -1,22 +1,31 @@
-import { Route, useNavigate} from "react-router-dom";
+import { Route} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
 import BookStore from "./BookStore";
 import {Routes} from 'react-router-dom'
 import Welcome from "./Welcome";
 
 
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Outlet} from "react-router";
 
+let variable= ""
 
 
 
 
 const handleClick = event => {
 
+    variable=event.currentTarget.dataset.id;
 
-    console.log(event.currentTarget.dataset.id);
-    alert("here")
+
+
+    alert(variable)
+
+   this.props.history.push("/bookStore", {storeID: "HiHI"});
+
+
+
+
 
 }
 function DisplayLocations() {
@@ -31,8 +40,6 @@ function DisplayLocations() {
 
 
 
-
-
     return data.stores.map(({ id, name, city,lang, address }) => (
 
 
@@ -44,13 +51,12 @@ function DisplayLocations() {
             <p>Address: {address}</p>
 
 
-            <form>
 
-                <input type="hidden" name="storeId" value={id}/>
+            <Link to={"/bookStore"}  data-id={name} onClick={ handleClick }>Enter the store</Link>
 
-                <button type="submit">Submit</button>
-            </form>
-            <Link to={"/bookStore"}  data-id={name} onClick={handleClick }>Abouts</Link>
+
+
+
 
 
 
@@ -59,7 +65,6 @@ function DisplayLocations() {
 
     ));
 }
-
 
 
 const GET_LOCATIONS = gql`
@@ -90,8 +95,11 @@ export default function Stores(props) {
         <>
 
             <div>
-
+                {/*<BookStore name="variable" />*/}
                 <DisplayLocations />
+
+
+
 
             </div>
 

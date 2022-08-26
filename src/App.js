@@ -17,7 +17,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
 
-function App() {
+const App= (props) => {
     let name = ""
 
 
@@ -26,12 +26,13 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
+
                     <Route path="/" element={<Welcome/>}>
                         <Route index="index" element={<Stores/>}/>
                         {/*<Route path="stores" element={<Stores/>}/>*/}
 
 
-                        <Route path="bookStore" element={<BookStore/>}/>}/>
+                        <Route bookID={props.bookID} path="bookStore" element={<BookStore/>}/>}/>
 
 
 

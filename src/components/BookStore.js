@@ -2,6 +2,9 @@ import {Link, useLocation} from 'react-router-dom';
 
 import {Outlet} from "react-router";
 import {gql, useQuery} from "@apollo/client";
+import {render} from "react-dom";
+
+
 
 
 
@@ -67,15 +70,38 @@ const GET_BOOKS = gql`
       }
 `;
 
-export default function BookStore(props) {
 
+
+
+
+
+
+const BookStore= (props) =>{
+
+//     const Register=()=>{
+//
+//         const location = useLocation()
+//
+// //store the state in a variable if you want
+// //location.state then the property or object you want
+//
+//         const Name = location.state.name
+//
+//         return(
+//             <div>
+//                 hello my name is {Name}
+//             </div>
+//         )
+//
+//     }
 
 
     return (
         <>
 
 
-            <h1>Welcome to finat Store</h1>
+            <h1>Welcome to {props.storeID} Store</h1>
+
 
             <div>
 
@@ -88,3 +114,5 @@ export default function BookStore(props) {
     )
 
 }
+
+export default BookStore;
