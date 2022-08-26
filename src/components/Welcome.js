@@ -8,7 +8,6 @@ export default function Locations(props) {
         <>
             <img src="../images/logo.png" width="100px" className="img-fluid" alt="logo"/>
 
-
             <br/><br/>
 
             <Outlet/>

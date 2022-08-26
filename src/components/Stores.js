@@ -1,5 +1,80 @@
+import { Route, useNavigate} from "react-router-dom";
+import {gql, useQuery} from "@apollo/client";
+import BookStore from "./BookStore";
+import {Routes} from 'react-router-dom'
+import Welcome from "./Welcome";
+
+
 import {Link} from "react-router-dom";
 import {Outlet} from "react-router";
+
+
+
+
+
+const handleClick = event => {
+
+
+    console.log(event.currentTarget.dataset.id);
+    alert("here")
+
+}
+function DisplayLocations() {
+
+
+
+    const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
+
+
+
+
+    return data.stores.map(({ id, name, city,lang, address }) => (
+
+
+        <div  className="card" >
+            <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
+            <h4><b>{name}</b></h4>
+            <p>City: {city}</p>
+            <p>Language: {lang}</p>
+            <p>Address: {address}</p>
+
+
+            <form>
+
+                <input type="hidden" name="storeId" value={id}/>
+
+                <button type="submit">Submit</button>
+            </form>
+            <Link to={"/bookStore"}  data-id={name} onClick={handleClick }>Abouts</Link>
+
+
+
+        </div>
+
+
+    ));
+}
+
+
+
+const GET_LOCATIONS = gql`
+  query GetStores {
+        stores {
+          id
+          name
+          city
+          lang
+          address
+        }
+      }
+`;
+
+
 
 export default function Stores(props) {
     /**
@@ -8,55 +83,21 @@ export default function Stores(props) {
      * fluid, so we can keep the website responsible
      *
      */
+
+
+
     return (
         <>
 
+            <div>
 
+                <DisplayLocations />
 
+            </div>
 
-            {/*<div className="card">*/}
-            {/*    <img src="../images/store.jpeg" width="400px" className="img-fluid" alt="logo"/>*/}
-            {/*        <div className="container">*/}
-            {/*            <h4><b>Finat</b></h4>*/}
-            {/*            <p>136 rue de rennes</p>*/}
-            {/*            <p>Paris</p>*/}
-            {/*            <div className="col">*/}
-            {/*                <Link to="/finat">Enter the store</Link>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-
-
-
-
-            {/*<div className="card">*/}
-            {/*    <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>*/}
-            {/*    <div className="container">*/}
-            {/*        <h4><b>Miguel Maranda Bookstore</b></h4>*/}
-            {/*        <p>C. de Lope de Vega</p>*/}
-            {/*        <p>Madrid</p>*/}
-            {/*        <div className="col">*/}
-            {/*            <Link to="/miguel">Enter the store</Link>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-
-            {/*</div>*/}
-
-            {/*    <div className="card">*/}
-            {/*        <img src="../images/book5.png" width="400px" className="img-fluid" alt="logo"/>*/}
-            {/*        <div className="container">*/}
-            {/*            <h4><b>Harrietts Bookshop</b></h4>*/}
-            {/*            <p>5 Av.</p>*/}
-            {/*            <p>New York</p>*/}
-            {/*            <div className="col">*/}
-            {/*                <Link to="/harriets">Enter the store</Link>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-
-            {/*    </div>*/}
-
-            {/*</div>*/}
             <Outlet/>
 
         </>
     );
 }
+

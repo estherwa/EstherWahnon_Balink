@@ -9,12 +9,11 @@ import {ApolloClient, ApolloProvider, gql, InMemoryCache} from "@apollo/client";
 
 
 
+
 const client = new ApolloClient({
     uri: 'https://logical-calf-89.hasura.app/v1/graphql',
     cache: new InMemoryCache(),
 });
-
-// const client = ...
 
 client
     .query({
@@ -28,21 +27,71 @@ client
           address
         }
       }
+
     `,
     })
     .then((result) => console.log(result));
+
+
+
+
+// const book= new ApolloClient({
+//     uri: 'https://logical-calf-89.hasura.app/v1/graphql',
+//     cache: new InMemoryCache(),
+// });
+
+
+
+client
+    .query({
+        query: gql`
+      query GetBooks {
+        books {
+          author
+          description
+          id
+          isActive
+          language
+          name
+          paperback
+          price
+          ratings
+          publisher
+          store_id
+          type
+          stars
+          
+        }
+      }
+      
+    `,
+    })
+    .then((result) =>
+        console.log(result));
+
+
+
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-    <ApolloProvider client={client}>
-        <App />
+    <React.StrictMode>
+        {/*<App />*/}
 
-    </ApolloProvider>,
+        <ApolloProvider   client={client}  >
+            <App />
+
+        </ApolloProvider>
+
+    </React.StrictMode>,
 
 
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+
+
+
 );
 
 

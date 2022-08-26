@@ -1,110 +1,46 @@
 import './App.css';
-import FinatStore from "./components/FinatStore";
-import MiguelStore from "./components/MiguelStore";
-import {BrowserRouter, Link, Route} from "react-router-dom";
-import {Routes} from 'react-router-dom'
+import BookStore from "./components/BookStore";
+
+import {Link} from "react-router-dom";
 import Stores from "./components/Stores";
 import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
+
 // import {Outlet, useNavigate} from "react-router";
-import HarrietsStore from "./components/HarrietsStore";
 
-import { gql, useQuery} from "@apollo/client";
+import {gql, useQuery} from "@apollo/client";
 
-
-function DisplayLocations() {
+import {BrowserRouter as Router, Switch, Redirect,} from "react-router-dom";
 
 
-    const { loading, error, data } = useQuery(GET_LOCATIONS);
-
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-
-
-
-    return data.stores.map(({ id, name, city,lang, address }) => (
-
-
-
-            <div  className="card" >
-                <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
-                    <h4><b>{name}</b></h4>
-                    <p>City: {city}</p>
-                    <p>Language: {lang}</p>
-                    <p>Address: {address}</p>
-
-
-
-
-
-
-                </div>
-
-
-    ));
-}
-
-
-const GET_LOCATIONS = gql`
-  query GetStores {
-        stores {
-          id
-          name
-          city
-          lang
-          address
-        }
-      }
-`;
-
-
+import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import './App.css';
 
 function App() {
-    // const navigate = useNavigate();
-    //
-    // const navigateHome = () => {
-    //      navigate('/');
-    // };
+    let name = ""
+
+
 
     return (
         <>
-            <div>
-
-                <DisplayLocations />
-            </div>
-
-
-                <>
-                <BrowserRouter>
-                    <Routes>
-                            <Route path="/" element={<Welcome/>}>
-
-                            <Route index element={<Stores/>}/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Welcome/>}>
+                        <Route index="index" element={<Stores/>}/>
+                        {/*<Route path="stores" element={<Stores/>}/>*/}
 
 
-                            <Route path="miguel" element={<MiguelStore/>}/>
-
-                            <Route path="finat" element={<FinatStore/>}/>
-
-                                 <Route path="harriets" element={<HarrietsStore/>}/>
-
-
-                            <Route path={"*"} element={<NotFound/>}/>
+                        <Route path="bookStore" element={<BookStore/>}/>}/>
 
 
 
-
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
-            </>
+                        <Route path={"*"} element={<NotFound/>}/>
 
 
-
-
-
-
+                    </Route>
+                </Routes>
+            </BrowserRouter>
 
 
         </>
