@@ -99,9 +99,8 @@ const BookStore= (props) =>{
     return (
         <>
 
-
-            <h1>Welcome to {props.storeID} Store</h1>
-
+            {/*{console.log({props})}*/}
+            <h1>Welcome to {props.store} Store</h1>
 
             <div>
 

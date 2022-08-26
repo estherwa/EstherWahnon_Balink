@@ -16,8 +16,10 @@ import {BrowserRouter as Router, Switch, Redirect,} from "react-router-dom";
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
+import {useState} from "react";
 
-const App= (props) => {
+const App= () => {
+    const [store, setStore] = useState("")
     let name = ""
 
 
@@ -28,11 +30,11 @@ const App= (props) => {
                 <Routes>
 
                     <Route path="/" element={<Welcome/>}>
-                        <Route index="index" element={<Stores/>}/>
+                        <Route index="index" element={<Stores    setStore= {setStore} />}/>
                         {/*<Route path="stores" element={<Stores/>}/>*/}
 
 
-                        <Route bookID={props.bookID} path="bookStore" element={<BookStore/>}/>}/>
+                        <Route      path="bookStore" element={<BookStore   store={store}/>  }/>
 
 
 

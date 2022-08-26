@@ -13,58 +13,8 @@ let variable= ""
 
 
 
-const handleClick = event => {
-
-    variable=event.currentTarget.dataset.id;
 
 
-
-    alert(variable)
-
-   this.props.history.push("/bookStore", {storeID: "HiHI"});
-
-
-
-
-
-}
-function DisplayLocations() {
-
-
-
-    const { loading, error, data } = useQuery(GET_LOCATIONS);
-
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-
-
-
-    return data.stores.map(({ id, name, city,lang, address }) => (
-
-
-        <div  className="card" >
-            <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
-            <h4><b>{name}</b></h4>
-            <p>City: {city}</p>
-            <p>Language: {lang}</p>
-            <p>Address: {address}</p>
-
-
-
-            <Link to={"/bookStore"}  data-id={name} onClick={ handleClick }>Enter the store</Link>
-
-
-
-
-
-
-
-        </div>
-
-
-    ));
-}
 
 
 const GET_LOCATIONS = gql`
@@ -91,12 +41,64 @@ export default function Stores(props) {
 
 
 
+    const handleClick = event => {
+
+        variable=event.currentTarget.dataset.id;
+
+        // this.props.history.push("/bookStore", {store.: "HiHI"});
+
+        props.setStore(variable );
+
+        alert(variable)
+
+
+
+    }
+
+    function DisplayLocations() {
+
+
+
+        const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p>Error :(</p>;
+
+
+
+        return data.stores.map(({ id, name, city,lang, address }) => (
+
+
+            <div  className="card" >
+                <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
+                <h4><b>{name}</b></h4>
+                <p>City: {city}</p>
+                <p>Language: {lang}</p>
+                <p>Address: {address}</p>
+
+
+
+                <Link to={"/bookStore"}  data-id={name} onClick={ handleClick }>Enter the store</Link>
+
+
+
+
+
+
+
+            </div>
+
+
+        ));
+    }
+
     return (
         <>
 
             <div>
                 {/*<BookStore name="variable" />*/}
-                <DisplayLocations />
+                <DisplayLocations/>
 
 
 
