@@ -2,10 +2,6 @@ import {Link, useLocation} from 'react-router-dom';
 
 import {Outlet} from "react-router";
 import {gql, useQuery} from "@apollo/client";
-import {render} from "react-dom";
-
-
-
 
 
 
@@ -40,6 +36,10 @@ function DisplayLocations() {
             <p>Author: {author}</p>
             <p> { type}</p>
             <p> {price} $</p>
+
+            <Link to={"/cartStore"}  data-id={name} >Buy the book</Link>
+
+
 
 
         </div>
@@ -78,28 +78,9 @@ const GET_BOOKS = gql`
 
 const BookStore= (props) =>{
 
-//     const Register=()=>{
-//
-//         const location = useLocation()
-//
-// //store the state in a variable if you want
-// //location.state then the property or object you want
-//
-//         const Name = location.state.name
-//
-//         return(
-//             <div>
-//                 hello my name is {Name}
-//             </div>
-//         )
-//
-//     }
-
 
     return (
         <>
-
-            {/*{console.log({props})}*/}
             <h1>Welcome to {props.store} Store</h1>
 
             <div>

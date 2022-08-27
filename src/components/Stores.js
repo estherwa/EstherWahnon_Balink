@@ -45,12 +45,7 @@ export default function Stores(props) {
 
         variable=event.currentTarget.dataset.id;
 
-        // this.props.history.push("/bookStore", {store.: "HiHI"});
-
         props.setStore(variable );
-
-        alert(variable)
-
 
 
     }

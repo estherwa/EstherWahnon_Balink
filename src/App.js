@@ -17,6 +17,8 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
 import {useState} from "react";
+import CartStore from "./components/CartStore";
+import ThankPage from "./components/ThankPage";
 
 const App= () => {
     const [store, setStore] = useState("")
@@ -32,11 +34,12 @@ const App= () => {
                     <Route path="/" element={<Welcome/>}>
                         <Route index="index" element={<Stores    setStore= {setStore} />}/>
                         {/*<Route path="stores" element={<Stores/>}/>*/}
+                        <Route path="cartStore" element={<CartStore/>}/>
+
+                        <Route  path="bookStore" element={<BookStore   store={store}/>  }/>
 
 
-                        <Route      path="bookStore" element={<BookStore   store={store}/>  }/>
-
-
+                        <Route  path="thankPage" element={<ThankPage/>  }/>
 
                         <Route path={"*"} element={<NotFound/>}/>
 
