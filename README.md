@@ -2,7 +2,7 @@
 ![FormExample](/src/main/resources/static/im3.jpeg)
  
  ![FormExample](/public/images/book2.png)
-Esther Wahnon - estherwa@edu.hac.ac.il, Idan Baumer - idanba@edu.hac.ac.il
+Esther Wahnon - estherwa@edu.hac.ac.il
 
 
 ## Description
