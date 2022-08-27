@@ -6,13 +6,6 @@ import Stores from "./components/Stores";
 import NotFound from "./components/NotFound";
 import Welcome from "./components/Welcome";
 
-// import {Outlet, useNavigate} from "react-router";
-
-import {gql, useQuery} from "@apollo/client";
-
-import {BrowserRouter as Router, Switch, Redirect,} from "react-router-dom";
-
-
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
@@ -33,7 +26,7 @@ const App= () => {
 
                     <Route path="/" element={<Welcome/>}>
                         <Route index="index" element={<Stores    setStore= {setStore} />}/>
-                        {/*<Route path="stores" element={<Stores/>}/>*/}
+
                         <Route path="cartStore" element={<CartStore/>}/>
 
                         <Route  path="bookStore" element={<BookStore   store={store}/>  }/>

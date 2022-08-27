@@ -7,7 +7,7 @@ import enLocale from "i18n-iso-countries/langs/en.json";
 import itLocale from "i18n-iso-countries/langs/it.json";
 
 import * as countries from "i18n-iso-countries";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 const Checkbox = ({ label, value, onChange }) => {
@@ -31,36 +31,23 @@ export default function CartStore() {
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
     const [ZipCode, setZipCode] = useState("");
-    const [ setAddress ] = useState("");
-    const [City, setCity] = useState("");
-    const [LandLine, setLandLine] = useState("");
-    const [Date, setDate] = useState("");
-    const [Covid, setCovid] = useState(false);
-    const [Allergies, setAllergies] = useState(false);
     const [OtherCondition, setOtherCondition] = useState(false);
     const [OtherConditionsText, setOtherConditionsText] = useState("");
-    const [ CardioVascular, setCardioVascular] = useState(false);
+
     const [NumberPhone, setPhoneNumber] = useState("")
-    const [Diabetes, setDiabetes] = useState(false);
 
 
-    const [ Address, setSelectedCountry] = useState("");
 
-    const selectCountryHandler = (value) => setSelectedCountry(value);
 
     // Have to register the languages you want to use
     countries.registerLocale(enLocale);
     countries.registerLocale(itLocale);
 
-    // Returns an object not a list
-    const countryObj = countries.getNames("en", { select: "official" });
+    let navigate = useNavigate();
+    const routeChange = () =>{
 
-    const countryArr = Object.entries(countryObj).map(([key, value]) => {
-        return {
-            label: value,
-            value: key
-        };
-    });
+        navigate("/thankPage");
+    }
 
 
     return (
@@ -123,8 +110,9 @@ export default function CartStore() {
                                disabled={!OtherCondition}
                         />
 
-                                <Link to={"/thankPage"}  >Proceed to payment</Link>
 
+                            <br></br>
+                        <button style={{textAlign: "center"}}   onClick={(routeChange)    }   type="submit" className="btn btn-primary">Submit</button>
 
 
                     </form>

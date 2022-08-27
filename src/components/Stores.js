@@ -1,8 +1,6 @@
 import { Route} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
-import BookStore from "./BookStore";
-import {Routes} from 'react-router-dom'
-import Welcome from "./Welcome";
+
 
 
 import {Link, useNavigate} from "react-router-dom";
@@ -65,7 +63,9 @@ export default function Stores(props) {
         return data.stores.map(({ id, name, city,lang, address }) => (
 
 
-            <div  className="card" >
+            <div className="card">
+                <div className="card-header">
+                    <div className="card-header-bar">
                 <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
                 <h4><b>{name}</b></h4>
                 <p>City: {city}</p>
@@ -77,6 +77,8 @@ export default function Stores(props) {
                 <Link to={"/bookStore"}  data-id={name} onClick={ handleClick }>Enter the store</Link>
 
 
+            </div>
+                    </div>
 
 
 
@@ -92,7 +94,7 @@ export default function Stores(props) {
         <>
 
             <div>
-                {/*<BookStore name="variable" />*/}
+
                 <DisplayLocations/>
 
 
