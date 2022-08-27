@@ -11,14 +11,27 @@ We have implemented an online book store using React and GraphQL
 There are a lot of shops and the user can choose which shop to navigate to and it will take it to the wanted one.
 There are validations before submitting the form with all the personal details.
 
+All the data of the books and the stores have been taken from the backend of the graphql.
+
+
+There is a logo of the library that is static , in all the pages it will always appear.
 
  
  There are links/buttons to navigate between pages.
  
   ![Form](/public/images/im1.png)
+  
+  Depending on the store that you have chosen it will take you to the right one.
   ![Form1](/public/images/im2.png)
+  
+  
   ![Form2](/public/images/im3.png)
   ![Form3](/public/images/im4.png)
+  
+  After the thank you page the user has the option to go back to the main page and startt all over again.
+  
+  
+  
 ## Table of Contents 
 
 
@@ -30,6 +43,8 @@ FrontEnd:
 
 React, css and html5.
 
+
+All the frontend has been made without the need of using bootstrap.
 BackEnd:
 graphQl database
 
