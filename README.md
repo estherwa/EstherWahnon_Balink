@@ -1,5 +1,4 @@
 # My Book Library -Esther-Idan-Project
-![FormExample](/src/main/resources/static/im3.jpeg)
  
  ![FormExample](/public/images/book2.png)
 Esther Wahnon - estherwa@edu.hac.ac.il
@@ -16,10 +15,10 @@ There are validations before submitting the form with all the personal details.
  
  There are links/buttons to navigate between pages.
  
-  ![FormExample](/public/images/im1.png)
-  ![FormExample](/public/images/im2.png)
-  ![FormExample](/public/images/im3.png)
-  ![FormExample](/public/images/im4.png)
+  ![Form](/public/images/im1.png)
+  ![Form1](/public/images/im2.png)
+  ![Form2](/public/images/im3.png)
+  ![Form3](/public/images/im4.png)
 ## Table of Contents 
 
 
