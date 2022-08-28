@@ -69,5 +69,3 @@ Local exercises of the course
 ## Features
 Framework frontend: bootstrap 5.1, CSS, Java.
 
-Framework Backend:  
-•Mysql, Spring.
