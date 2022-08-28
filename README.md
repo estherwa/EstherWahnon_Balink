@@ -31,14 +31,7 @@ There is a logo of the library that is static , in all the pages it will always 
   
   After the thank you page the user has the option to go back to the main page and startt all over again.
   
-  
-  
-## Table of Contents 
-
-
-
-- [Installation](#installation)
-- Dowload XAMMP.app and all the spring pluggins.
+ 
 
 FrontEnd:
 
@@ -59,5 +52,5 @@ graphQl database
 
 
 ## Features
-Framework frontend: bootstrap 5.1, CSS, Java.
+Framework frontend: bootstrap 5.1, CSS,Javascript, React
 
