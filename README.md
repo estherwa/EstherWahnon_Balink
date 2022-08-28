@@ -54,14 +54,6 @@ graphQl database
 
 
 
-
-
-## Credits
-
-
-Local exercises of the course 
-
-
 ---
 
 
