@@ -22,13 +22,13 @@ There is a logo of the library that is static , in all the pages it will always 
   ![Form](/public/images/img1.png)
   
   Depending on the store that you have chosen it will take you to the right one.
-  ![Form](/public/images/im2.png)
   
   
   ![Form](/public/images/img2.png)
   ![Form](/public/images/img3.png)
    ![Form](/public/images/img4.png)
-  
+  ![Form](/public/images/im3.png)
+  ![Form](/public/images/im4.png)
   
   After the thank you page the user has the option to go back to the main page and startt all over again.
   
