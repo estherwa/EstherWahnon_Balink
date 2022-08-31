@@ -1,8 +1,5 @@
 import { useState} from "react";
 import * as PropTypes from "prop-types";
-
-
-
 import enLocale from "i18n-iso-countries/langs/en.json";
 import itLocale from "i18n-iso-countries/langs/it.json";
 
@@ -26,7 +23,7 @@ Checkbox.propTypes = {
 };
 
 
-export default function CartStore() {
+export default function PaymentStore() {
 
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
@@ -35,11 +32,6 @@ export default function CartStore() {
     const [OtherConditionsText, setOtherConditionsText] = useState("");
 
     const [NumberPhone, setPhoneNumber] = useState("")
-
-
-
-
-    // Have to register the languages you want to use
     countries.registerLocale(enLocale);
     countries.registerLocale(itLocale);
 
@@ -52,8 +44,6 @@ export default function CartStore() {
 
     return (
         <>
-
-
             <p style={{textAlign: "center"}}>
                 <div className="container-fluid" >
 
@@ -91,9 +81,6 @@ export default function CartStore() {
                                        value={NumberPhone} onChange={(e)=>setPhoneNumber(e.target.value)}
 
                                        placeholder="Number phone" required/>
-
-
-
                                 <Checkbox
 
                                     value={OtherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
@@ -102,8 +89,6 @@ export default function CartStore() {
                                     name="OtherConditions"
 
                                 /> <br/><br/>
-
-
 
                         <input className="un form-control" type="text" id="check_box" name="Other conditions"
                                placeholder="Any comments" value={OtherConditionsText} onChange={(e)=>setOtherConditionsText(e.target.value)}
@@ -114,18 +99,9 @@ export default function CartStore() {
                             <br></br>
                         <button style={{textAlign: "center"}}   onClick={(routeChange)    }   type="submit" className="btn btn-primary">Submit</button>
 
-
                     </form>
 
                 </div>
-
-
-
-
-
-
-
-
 
                     </div>  </div></p>
 
