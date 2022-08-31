@@ -43,6 +43,10 @@ BackEnd:
 graphQl database
 
 
+## Credits
+
+https://codesandbox.io/embed/build-a-shopping-cart-with-react-redux-exodg
+
 ## Usage
 
 
