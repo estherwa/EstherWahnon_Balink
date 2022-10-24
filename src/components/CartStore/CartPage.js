@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-// import{deleteItem} from "./"
+import './detail.css'
 import { useNavigate } from 'react-router-dom';
 import {deleteItem} from "../../Reducers/actions";
 
@@ -50,10 +50,10 @@ function Cart() {
                             return(
                                 <tr>
                                     <td><i className="badge badge-danger" onClick={()=>deleteItemFromCart(book)}>X</i></td>
-                                    <td>{book.name}</td>
+                                    <td className="name" >{book.name}</td>
                                     <td>{book.price} $</td>
                                     <td>1 </td>
-                                    <td onClick={()=>deleteItemFromCart(book)}>✖️</td>
+                                    <td onClick={()=>deleteItemFromCart(book)}>✖</td>
 
                                 </tr>
                             )
