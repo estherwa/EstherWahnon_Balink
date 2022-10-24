@@ -11,17 +11,10 @@ import axios from "axios";
 let url = "https://logical-calf-89.hasura.app/v1/graphql"
 
 const BookStore= (props) =>{
-
-
     let [searchParams, setSearchParams] = useSearchParams();
     const [id] = useSearchParams();
-
-
     const [books,setTheBooks] = useState([]);
     let interchange= String(id).replace("=","")
-
-
-
     let data= {query: `query get($where: books_bool_exp) {
                 books(where: $where) {
                     id
@@ -43,15 +36,12 @@ const BookStore= (props) =>{
         ,variables: {
             "where": { "store_id": {"_eq": interchange}}
 
-
         }
     }
 
     useEffect(()=>{
         const booksInStore = async () => {
-
             const result = await axios.post(url,data);
-
             setTheBooks(result.data.data.books);
 
         }
@@ -61,39 +51,22 @@ const BookStore= (props) =>{
 
     },[])
 
-
     let navigate = useNavigate();
-
     return (
         <>
             <h1>Welcome to {props.store} Store</h1>
-
-
             <div>
-
-
                 { books?.map(({ id, name, author,type }) => (
-
                     <div className="card" >
                         <img src="../images/book4.png" width="400px" className="img-fluid" alt="logo"/>
                         <h4><b>{name}</b></h4>
                         <p>Author: {author}</p>
                         <p> Type: { type}</p>
-
-                        <Link to={`/bookDetail/?${id}`}>Access the book</Link>
-
-
-
-
-
+                        <Link className="buttonStore" to={`/bookDetail/?${id}`}>Access the book</Link>
                     </div>
-
-
                 ))
                 }
             </div>
-
-
             <Outlet/>
 
         </>

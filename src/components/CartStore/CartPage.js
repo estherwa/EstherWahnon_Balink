@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import './detail.css'
+import './style.css'
 import { useNavigate } from 'react-router-dom';
 import {deleteItem} from "../../Reducers/actions";
 
@@ -15,9 +15,6 @@ function Cart() {
     function deleteItemFromCart(product){
         dispatch(deleteItem(product))
     }
-
-
-
     function totalToPay(){
         let counter = 0
         cart?.forEach((book)=>{
@@ -25,23 +22,20 @@ function Cart() {
         })
         setTotal(counter)
     }
-
     useEffect(()=>{
         totalToPay();
     },[cart])
-
     return (
         <div className="row">
             <div className="col-md-12">
                 <table className="table">
                     <thead>
                     <tr>
-                        <th></th>
+                        <th>x</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>🗑️</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -49,26 +43,22 @@ function Cart() {
                         cart?.map((book)=>{
                             return(
                                 <tr>
-                                    <td><i className="badge badge-danger" onClick={()=>deleteItemFromCart(book)}>X</i></td>
+                                    <td className="delete" ><i onClick={()=>deleteItemFromCart(book)}>X</i></td>
                                     <td className="name" >{book.name}</td>
-                                    <td>{book.price} $</td>
-                                    <td>1 </td>
+                                    <td className="price">{book.price} $</td>
+                                    <td className="quantity">1 </td>
                                     <td onClick={()=>deleteItemFromCart(book)}>✖</td>
-
                                 </tr>
                             )
                         })
-
                     }
                     <tr>
-                        <td colSpan="5">Total Price : {total} $</td>
-
+                        <td className="totalPrice" colSpan="5">Total Price : {total} $</td>
                     </tr>
                     </tbody>
-
                 </table>
             </div>
-            <div  onClick={()=>navigate("/paymentStore")}>Proceed to payment</div>
+            <div  className="payment"  onClick={()=>navigate("/paymentStore")}>Proceed to payment</div>
         </div>
 
 
