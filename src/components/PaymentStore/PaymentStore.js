@@ -1,12 +1,11 @@
-import { useState} from "react";
+import React, {useEffect, useState} from "react";
 import * as PropTypes from "prop-types";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import itLocale from "i18n-iso-countries/langs/it.json";
-
+import axios from "axios";
 import * as countries from "i18n-iso-countries";
-import {Link, useNavigate} from "react-router-dom";
-
-
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
+import { gql, useMutation } from '@apollo/client';
 const Checkbox = ({ label, value, onChange }) => {
     return (
         <label>
@@ -24,39 +23,59 @@ Checkbox.propTypes = {
 
 
 export default function PaymentStore() {
-
     const [FirstName, setFirstName] = useState("");
     const [LastName, setLastName] = useState("");
     const [ZipCode, setZipCode] = useState("");
     const [OtherCondition, setOtherCondition] = useState(false);
     const [OtherConditionsText, setOtherConditionsText] = useState("");
-
     const [NumberPhone, setPhoneNumber] = useState("")
+    const url= "https://logical-calf-89.hasura.app/v1/graphql"
     countries.registerLocale(enLocale);
+    const [id] = useSearchParams();
     countries.registerLocale(itLocale);
+    const [books,saveBook] = useState([]);
+ 
+    useEffect(()=>{
+        const insertOrders= async () => {
+            const result = await axios.post(url,{
+                query: `mutation Insert_orders($objects: [orders_insert_input!]!) {
+                    insert_orders(objects: $objects) {
+                      affected_rows
+                      returning {
+                        id
+                      }
+                    }
+                  }`,variables: {
+                    "amount": null,
+                    "books": null,
+                    "firstName": FirstName, 
+                    "lastName": LastName,
+                    "address":ZipCode,
+                    "phone_number":NumberPhone
+                    }
+            });
+
+           saveBook(result.data.data.insert_orders);
+           console.log(result.data.data.insert_orders)
+        }
+        insertOrders();
+    },[])
 
     let navigate = useNavigate();
     const routeChange = () =>{
-
         navigate("/thankPage");
     }
-
-
     return (
         <>
             <p style={{textAlign: "center"}}>
                 <div className="container-fluid" >
-
                     <div className="main">
                         <div className="row">
-
                             <form >
 
+                                <h5> hello </h5>
                                 <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
-                                <br/><br/>
-
-                                <br/><br/>
-
+                                <br/><br/><br/><br/>
                                 <input className="un form-control"  type="text" id="first_name"
                                        value={FirstName} onChange={(e)=>setFirstName(e.target.value)}
                                        maxLength={10}
@@ -69,41 +88,30 @@ export default function PaymentStore() {
 
                                 <input className="un form-control" type="number" step="any"
                                        pattern="[0-9]+"
-
                                        value={ZipCode} onChange={(e)=>setZipCode(e.target.value)}
-
                                        minLength={5}
                                        name="ZipCode" placeholder="Zip Code" />
-
                                 <input className="un form-control" type="text" step="any"
                                        name= "NumberPhone" id="NumberPhone"
                                        pattern="[0-9]+"
                                        value={NumberPhone} onChange={(e)=>setPhoneNumber(e.target.value)}
-
                                        placeholder="Number phone" required/>
                                 <Checkbox
-
-                                    value={OtherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
-
-                                    label="Any comments"
-                                    name="OtherConditions"
-
+                                        value={OtherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
+                                        label="Any comments"
+                                        name="OtherConditions"
                                 /> <br/><br/>
-
-                        <input className="un form-control" type="text" id="check_box" name="Other conditions"
-                               placeholder="Any comments" value={OtherConditionsText} onChange={(e)=>setOtherConditionsText(e.target.value)}
-                               disabled={!OtherCondition}
-                        />
-
-
-                            <br></br>
-                        <button style={{textAlign: "center"}}   onClick={(routeChange)    }   type="submit" className="btn btn-primary">Submit</button>
-
+                                    <input className="un form-control" type="text" id="check_box" name="Other conditions"
+                                        placeholder="Any comments" value={OtherConditionsText} onChange={(e)=>setOtherConditionsText(e.target.value)}
+                                        disabled={!OtherCondition}
+                                 />
+                             <br></br>
+                        <button style={{textAlign: "center"}}  onClick={(routeChange)} type="submit" className="btn btn-primary">Submit</button>
                     </form>
-
                 </div>
-
-                    </div>  </div></p>
+             </div>  
+        </div>
+    </p>
 
         </>
     )
