@@ -20,7 +20,6 @@ export default function DetailPage(props) {
 
     useEffect(()=>{
         const detailBook = async () => {
-
             const result = await axios.post(url,{
                 query: `query Books($booksByPkId: uuid!) {
                 books_by_pk(id: $booksByPkId) {
