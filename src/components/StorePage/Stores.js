@@ -45,7 +45,7 @@ export default function Stores(props) {
                 <p>City: {city}</p>
                 <p>Language: {lang}</p>
                 <p>Address: {address}</p>
-                        <Link to={ `bookStore/?${id}`}  data-id={name} onClick={ handleClick }>Enter the store</Link>
+                        <Link className="buttonStore" to={ `bookStore/?${id}`}  data-id={name} onClick={ handleClick }>Enter the store</Link>
                         </div>
                     </div>
             </div>

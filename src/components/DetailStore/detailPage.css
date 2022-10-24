@@ -266,18 +266,18 @@ input#number {
     font-weight: bold;
     background-color: #c5c5db;
 }
+.bigtitle {
+    /**    padding-left:15%;***/
+    padding-top: 5%;
+    padding-bottom: 5%;
+    color: darkgoldenrod;
+    font-family: 'Trocchi', serif;
+    font-size: 500%;
+    font-weight: normal;
+    margin: 0;
 
-
-
-
-
-
-
-
-
-
-
-
+    /*line-height: 1.0em;*/
+}
 .cart-section {
     min-height: 70%;
     padding: 30px;

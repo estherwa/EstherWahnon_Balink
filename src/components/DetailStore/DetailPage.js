@@ -69,7 +69,7 @@ export default function DetailPage(props) {
         <>
 
             <div >
-            <h1> Book details</h1>
+            <h1 className="bigtitle"> Book Details:</h1>
             </div>
                 <div className="card-detail" >
                     <img src="../images/book4.png" width="400px" className="img-fluid" alt="logo"/>

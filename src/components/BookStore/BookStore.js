@@ -54,7 +54,7 @@ const BookStore= (props) =>{
     let navigate = useNavigate();
     return (
         <>
-            <h1>Welcome to {props.store} Store</h1>
+            <h1 className=" bigtitle">Welcome to {props.store} Store</h1>
             <div>
                 { books?.map(({ id, name, author,type }) => (
                     <div className="card" >

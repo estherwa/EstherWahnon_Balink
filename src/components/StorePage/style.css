@@ -80,3 +80,14 @@ body {
 .card .btn:hover {
     background: #F68657;
 }
+.buttonStore {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: darkgoldenrod;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    width: 50%;
+    border: 3px solid goldenrod;
+    padding: 10px;
+}
