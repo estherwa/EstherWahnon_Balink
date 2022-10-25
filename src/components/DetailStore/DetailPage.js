@@ -6,18 +6,14 @@ import './detailPage.css'
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../Reducers/actions";
-const url= "https://logical-calf-89.hasura.app/v1/graphql"
-
+import {url} from "../../dev"
 
 export default function DetailPage(props) {
-
     let cart = useSelector((state)=> state.cart)
     let navigate = useNavigate();
     const [books,saveBook] = useState([]);
     const [id] = useSearchParams();
     const dispatch = useDispatch();
-
-
     useEffect(()=>{
         const detailBook = async () => {
             const result = await axios.post(url,{

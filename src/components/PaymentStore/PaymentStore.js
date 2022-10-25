@@ -8,6 +8,7 @@ import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import './style.css'
 import {order} from '../orders'
 import { gql, useMutation } from '@apollo/client';
+import {url} from "../../dev"
 const Checkbox = ({ label, value, onChange }) => {
     return (
         <label>
@@ -28,7 +29,6 @@ export default function PaymentStore() {
     const [otherCondition, setOtherCondition] = useState(false);
     const [otherConditionsText, setOtherConditionsText] = useState("");
     const [numberPhone, setPhoneNumber] = useState("")
-    const url= "https://logical-calf-89.hasura.app/v1/graphql"
     countries.registerLocale(enLocale);
     const [id] = useSearchParams();
     countries.registerLocale(itLocale);
@@ -37,14 +37,7 @@ export default function PaymentStore() {
         const insertOrders= async () => {
             const result = await axios.post(url,{
                 query:
-                    `mutation Insert_orders($objects: [orders_insert_input!]!) {
-                                 insert_orders(objects: $objects) {
-                                   affected_rows
-                                   returning {
-                                     id
-                                   }
-                                 }
-                               }`
+                     {order}
                 ,variables: {
                     "amount": null,
                     "books": null,

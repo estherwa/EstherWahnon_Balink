@@ -3,9 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import './style.css'
 import { useNavigate } from 'react-router-dom';
 import {deleteItem} from "../../Reducers/actions";
-
 let zero= 0
-
 function Cart() {
     const [total,setTotal] = useState(zero)
     const cart = useSelector((state)=> state.cart);
@@ -52,9 +50,9 @@ function Cart() {
                             )
                         })
                     }
-                    <tr>
-                        <td className="totalPrice" colSpan="5">Total Price : {total} $</td>
-                    </tr>
+                        <tr>
+                             <td className="totalPrice" colSpan="5">Total Price : {total} $</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
