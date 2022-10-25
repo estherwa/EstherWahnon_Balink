@@ -37,3 +37,21 @@ export  const queryStore =
         }
       }
 `;
+export const bookStore=
+    `query Books($booksByPkId: uuid!) {
+                books_by_pk(id: $booksByPkId) {
+                    id
+                    name
+                     type
+                     isActive
+                     price
+                    store_id
+                    author
+                    description
+                    publisher
+                    language
+                    paperback
+                    ratings
+                    stars
+                }
+              }`

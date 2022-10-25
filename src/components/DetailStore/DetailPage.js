@@ -6,6 +6,7 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../Reducers/actions";
 import {REACT_APP_URL} from "../../config/env";
+import {bookStore} from "../orders";
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart)
     let navigate = useNavigate();
@@ -15,23 +16,7 @@ export default function DetailPage(props) {
     useEffect(()=>{
         const detailBook = async () => {
             const result = await axios.post(REACT_APP_URL,{
-                query: `query Books($booksByPkId: uuid!) {
-                books_by_pk(id: $booksByPkId) {
-                    id
-                    name
-                     type
-                     isActive
-                     price
-                    store_id
-                    author
-                    description
-                    publisher
-                    language
-                    paperback
-                    ratings
-                    stars
-                }
-              }`,variables: {
+                query: bookStore,variables: {
                     "booksByPkId":  String(id).replace("=","")
                 }
             });
