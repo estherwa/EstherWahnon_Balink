@@ -76,7 +76,7 @@ export default function DetailPage(props) {
                     <h4><b>{books.name}</b></h4>
                     <p>Author : {books.author}</p>
                     <p> Type : {books.type}</p>
-                    <p> Description :<br></br> {books.description}</p>
+                    <p> Description : <div className="space"></div> {books.description}</p>
                     <p> Language : {books.language} 🌐</p>
                     <p> Ratings : {books. ratings} ⭐</p>
 
@@ -87,7 +87,7 @@ export default function DetailPage(props) {
                 <h1>BUY: {books.price} $</h1>
                 <h9> As an alternative, pre order the Kindle eBook instead to autoatically
                 receive on a day of release.</h9>
-                <br></br><br></br>
+                <div className="space"></div>
 
                 <button onClick={()=>{addCart()} } >Add to cart</button>
 

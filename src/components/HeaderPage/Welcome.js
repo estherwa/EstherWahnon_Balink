@@ -10,7 +10,6 @@ export default function Welcome(props) {
     return (
         <>
             <div className="header">
-
                 <img   src="../images/logo.png"
                       width="100px" onClick={()=>{ navigate("/")} } />
                 <div className="header-right">

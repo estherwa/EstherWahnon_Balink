@@ -16,27 +16,21 @@ const GET_LOCATIONS = gql`
         }
       }
 `;
-
 export default function Stores(props) {
 
     let navigate = useNavigate();
-
-
     const handleClick = event => {
 
         variable=event.currentTarget.dataset.id;
         props.setStore(variable );
-
     }
 
     function DisplayLocations() {
-
         const { loading, error, data } = useQuery(GET_LOCATIONS);
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
 
         return data.stores.map(({ id, name, city,lang, address }) => (
-
             <div className="card" >
                 <div className="card-header">
                     <div className="card-header-bar">

@@ -10,6 +10,9 @@
 
 
 }
+.space {
+    white-space: pre-line; /* collapse WS, preserve LB */
+}
 .check_box{
 
     font-size: 20px;
