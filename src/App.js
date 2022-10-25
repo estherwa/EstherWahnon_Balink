@@ -12,12 +12,14 @@ import ThankPage from "./components/ThankPage/ThankPage";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import DetailPage from "./components/DetailStore/DetailPage";
 import CartPage from  "./components/CartStore/CartPage"
-import {url} from "./dev"
+
+import {REACT_APP_URL} from "./config/env";
 const client = new ApolloClient({
-    uri: url,
+    uri: REACT_APP_URL,
     cache: new InMemoryCache(),
 });
 const App= () => {
+
     const [store, setStore] = useState("")
     return (
         <>

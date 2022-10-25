@@ -4,7 +4,7 @@ import {Outlet} from "react-router";
 import {gql, useQuery} from "@apollo/client";
 import './style.css'
 import axios from "axios";
-import {url} from "../../dev"
+import {REACT_APP_URL} from "../../config/env";
 import {bookQuery} from "../orders"
 const BookStore= (props) => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +19,7 @@ const BookStore= (props) => {
     }
     useEffect(() => {
         const booksInStore = async () => {
-            const result = await axios.post(url, data);
+            const result = await axios.post(REACT_APP_URL, data);
             setTheBooks(result.data.data.books);
         }
         booksInStore().then(result =>

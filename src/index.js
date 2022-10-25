@@ -8,12 +8,14 @@ import reportWebVitals from './reportWebVitals';
 import {ApolloClient, ApolloProvider, gql, InMemoryCache} from "@apollo/client";
 import {Provider} from "react-redux";
 import {queryStore} from "./components/orders";
-import {url} from "./dev"
+import {REACT_APP_URL} from "./config/env";
 const store = createStore(orederReducer);
 const client = new ApolloClient({
-    uri: url,
+    uri: REACT_APP_URL,
     cache: new InMemoryCache(),
 });
+
+console.log(REACT_APP_URL)
 client
     .query({
         query: queryStore,

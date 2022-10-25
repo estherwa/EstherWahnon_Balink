@@ -6,7 +6,7 @@ import './detailPage.css'
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../Reducers/actions";
-import {url} from "../../dev"
+import {REACT_APP_URL} from "../../config/env";
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart)
     let navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function DetailPage(props) {
     const dispatch = useDispatch();
     useEffect(()=>{
         const detailBook = async () => {
-            const result = await axios.post(url,{
+            const result = await axios.post(REACT_APP_URL,{
                 query: `query Books($booksByPkId: uuid!) {
                 books_by_pk(id: $booksByPkId) {
                     id

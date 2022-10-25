@@ -7,7 +7,7 @@ import * as countries from "i18n-iso-countries";
 import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import './style.css'
 import {order} from '../orders'
-import {url} from "../../dev"
+import {REACT_APP_URL} from "../../config/env";
 const Checkbox = ({ label, value, onChange }) => {
     return (
         <label>
@@ -72,7 +72,7 @@ export default function PaymentStore() {
     }
     useEffect(()=>{
         const insertOrders= async () => {
-            const result = await axios.post(url,{
+            const result = await axios.post(REACT_APP_URL,{
                 query:
                      {order}
                 ,variables: {
@@ -84,8 +84,8 @@ export default function PaymentStore() {
                     "phone_number":numberPhone
                     }
             });
-           saveBook(result.data.data.Insert_orders);
-           console.log(result.data.data.Insert_orders)
+           saveBook(result.data.data.order.Insert_orders);
+           console.log(result.data.data.order.Insert_orders)
         }
         insertOrders();
     },[])
