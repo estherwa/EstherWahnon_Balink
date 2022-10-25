@@ -7,7 +7,6 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../Reducers/actions";
 import {url} from "../../dev"
-
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart)
     let navigate = useNavigate();
@@ -37,33 +36,24 @@ export default function DetailPage(props) {
                     "booksByPkId":  String(id).replace("=","")
                 }
             });
-
             saveBook(result.data.data.books_by_pk);
-
         }
-
         detailBook();
-
     },[])
 
     function addCart () {
-
         if(!(cart?.find((book)=>book.id===books.id))){
             books.quantity = 1
             console.log(books.quantity)
             dispatch(addToCart(books));
-
         }
         else{
             console.log(books.quantity)
             dispatch(updateCart(books));
         }
     }
-
-
     return (
         <>
-
             <div >
             <h1 className="bigtitle"> Book Details:</h1>
             </div>
@@ -75,20 +65,14 @@ export default function DetailPage(props) {
                     <p> Description : <div className="space"></div> {books.description}</p>
                     <p> Language : {books.language} 🌐</p>
                     <p> Ratings : {books. ratings} ⭐</p>
-
                 </div>
-
             <div className="card-detail"  >
-
                 <h1>BUY: {books.price} $</h1>
                 <h9> As an alternative, pre order the Kindle eBook instead to autoatically
                 receive on a day of release.</h9>
                 <div className="space"></div>
-
                 <button onClick={()=>{addCart()} } >Add to cart</button>
-
             </div>
-
             <Outlet/>
         </>
 

@@ -9,7 +9,6 @@ function Cart() {
     const cart = useSelector((state)=> state.cart);
     const dispatch = useDispatch();
     let navigate = useNavigate();
-
     function deleteItemFromCart(product){
         dispatch(deleteItem(product))
     }
@@ -56,13 +55,8 @@ function Cart() {
                     </tbody>
                 </table>
             </div>
-            <div  className="payment"  onClick={()=>navigate("/paymentStore")}>Proceed to payment</div>
+            <div className="payment"  onClick={()=>navigate("/paymentStore")}>Proceed to payment</div>
         </div>
-
-
     )
-
 }
-
-
 export default Cart

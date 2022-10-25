@@ -18,10 +18,8 @@ export default function Welcome(props) {
                            width="50px" onClick={()=>{ navigate("/cartPage")} } />
                     </div>
             </div>
-
             <Outlet/>
         </>
-
     )
 
 }

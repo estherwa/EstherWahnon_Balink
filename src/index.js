@@ -7,35 +7,25 @@ import {orederReducer} from "./Reducers";
 import reportWebVitals from './reportWebVitals';
 import {ApolloClient, ApolloProvider, gql, InMemoryCache} from "@apollo/client";
 import {Provider} from "react-redux";
+import {queryStore} from "./components/orders";
+import {url} from "./dev"
 const store = createStore(orederReducer);
 const client = new ApolloClient({
-    uri: 'https://logical-calf-89.hasura.app/v1/graphql',
+    uri: url,
     cache: new InMemoryCache(),
 });
-
 client
     .query({
-        query: gql`
-      query GetStores {
-        stores {
-          id
-          name
-          city
-          lang
-          address
-        }
-      }
-    `,
+        query: queryStore,
     })
     .then((result) => console.log(result));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
     <React.StrictMode>
         <ApolloProvider   client={client}  >
             <Provider store={store}>
-            <App />
-                </Provider>
+                <App/>
+            </Provider>
         </ApolloProvider>
     </React.StrictMode>,
 );
