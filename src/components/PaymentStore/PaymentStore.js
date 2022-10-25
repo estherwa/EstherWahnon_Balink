@@ -29,9 +29,8 @@ export default function PaymentStore() {
     const [otherConditionsText, setOtherConditionsText] = useState("");
     const [numberPhone, setPhoneNumber] = useState("")
     countries.registerLocale(enLocale);
-    const [id] = useSearchParams();
     countries.registerLocale(itLocale);
-    const [books,saveBook] = useState([]);
+    const [saveBook] = useState([]);
     const FirstName = ()=>{
         return   <input className="firstName"  type="text" id="first_name"
                         value={firstName} onChange={(e)=>setFirstName(e.target.value)}
@@ -73,9 +72,8 @@ export default function PaymentStore() {
     useEffect(()=>{
         const insertOrders= async () => {
             const result = await axios.post(REACT_APP_URL,{
-                query:
-                     {order}
-                ,variables: {
+                query:{order}
+                ,variables:{
                     "amount": null,
                     "books": null,
                     "firstName": firstName,
@@ -100,7 +98,7 @@ export default function PaymentStore() {
                     <div className="main">
                         <div className="row">
                             <div className="space">
-                            <form >
+                            <form>
                                 <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
                                 <FirstName/>
                                 <LastName/>
@@ -109,14 +107,14 @@ export default function PaymentStore() {
                                 <CheckBox/>
                                <div className="space"></div>
                                 <Check_box/>
-                        <div className="space"></div>
-                        <button style={{textAlign: "center"}}  onClick={(routeChange)} type="submit" className="mainButton">Submit</button>
-                    </form>
-                  </div>
+                                <div className="space"></div>
+                                <button style={{textAlign: "center"}}  onClick={(routeChange)} type="submit" className="mainButton">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-             </div>  
-        </div>
-    </p>
+            </p>
  </>
     )
 }

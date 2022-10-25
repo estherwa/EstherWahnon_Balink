@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Outlet} from "react-router";
 import {Link, useNavigate, useSearchParams} from "react-router-dom";
-
 import './detailPage.css'
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";

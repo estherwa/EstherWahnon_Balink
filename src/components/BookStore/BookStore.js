@@ -1,7 +1,6 @@
 import {Link, useLocation, useNavigate, useSearchParams} from 'react-router-dom';
 import React, {useEffect, useState} from "react";
 import {Outlet} from "react-router";
-import {gql, useQuery} from "@apollo/client";
 import './style.css'
 import axios from "axios";
 import {REACT_APP_URL} from "../../config/env";
