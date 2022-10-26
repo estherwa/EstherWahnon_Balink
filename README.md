@@ -1,4 +1,4 @@
- # My Book Library -Esther-Balink Project
+ # My Book Library -Esther Project
  
  ![FormExample](/public/images/book2.png)
 Esther Wahnon - estherwa@edu.hac.ac.il
@@ -6,7 +6,7 @@ Esther Wahnon - estherwa@edu.hac.ac.il
 
 ## Description
 
-We have implemented an online book store using React and GraphQL
+We have implemented an online book store using React, Redux and GraphQL.
 
 There are a lot of shops and the user can choose which shop to navigate to and it will take it to the wanted one.
 There are validations before submitting the form with all the personal details.
