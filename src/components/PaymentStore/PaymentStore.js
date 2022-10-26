@@ -16,9 +16,9 @@ const cart = useSelector((state)=> state.cart)
         let id, books, firstName, lastName, address,phone_number, amount;
         return (
             <div>
-                <form onSubmit={  e => {
+                <form onSubmit={ e => {
                     e.preventDefault();
-                    insert_orders({objects: {
+                    insert_orders( {"objects": [{
                             id: id.value,
                             amount: cart.amount,
                             books: {
@@ -28,15 +28,15 @@ const cart = useSelector((state)=> state.cart)
                             firstName: firstName.value,
                             lastName: lastName.value,
                             address:address.value,
-                            phone_number:phone_number.value}})
-                     }
-
-                }>
+                            phone_number:phone_number.value
+                        }
+                        ]
+                    })}}>
                     <fieldset>
-                        <Value  ref={value => firstName= value} name= "First Name" placeholder="First Name"/>
-                        <Value  ref={value => lastName= value}  name= "Last Name" placeholder="Last Name"/>
-                        <Value   ref={value => address= value} name= "zip" placeholder="Zip Code" />
-                        <Value  ref={value => phone_number= value}  name="phone number"  placeholder="Phone number"/>
+                        <Value ref={value => firstName= value} name= "First Name" placeholder="First Name"/>
+                        <Value ref={value => lastName= value}  name= "Last Name" placeholder="Last Name"/>
+                        <Value ref={value => address= value} name= "zip" placeholder="Zip Code" />
+                        <Value ref={value => phone_number= value}  name="phone number"  placeholder="Phone number"/>
                         <CheckBox/>
                         <div className="space"></div>
                         <Check_box/>
