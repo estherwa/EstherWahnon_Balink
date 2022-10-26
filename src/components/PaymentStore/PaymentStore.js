@@ -14,7 +14,7 @@ countries.registerLocale(itLocale);
 const [saveBook] = useState([]);
 const cart = useSelector((state)=> state.cart)
 let navigate = useNavigate();
-    const InsertOrder=()=> {
+    const InsertOrder=(props)=> {
        const[insertOrder]= useMutation (order)
         let id, books, firstName, lastName, address,phone_number, amount;
         return (
@@ -25,8 +25,8 @@ let navigate = useNavigate();
                             id: id.value,
                             amount: cart.amount,
                             books: {
-                                id: id.props// revisar que seguro que no esta bien
-                                , price : null // revisar que seguro que no esta bien
+                                id: props.id// revisar que seguro que no esta bien
+                                , price : props.price // revisar que seguro que no esta bien
                             },
                             firstName: firstName.value,
                             lastName: lastName.value,
