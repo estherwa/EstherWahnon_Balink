@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import itLocale from "i18n-iso-countries/langs/it.json";
 import * as countries from "i18n-iso-countries";
-import { useNavigate, useSearchParams} from "react-router-dom";
 import './style.css'
 import {order} from '../orders'
 import { Check_box, CheckBox, Value} from "./Component";
@@ -11,28 +10,26 @@ import {useSelector} from "react-redux";
 export default function PaymentStore() {
 countries.registerLocale(enLocale);
 countries.registerLocale(itLocale);
-const [saveBook] = useState([]);
 const cart = useSelector((state)=> state.cart)
-let navigate = useNavigate();
     const InsertOrder=(props)=> {
-       const[insertOrder]= useMutation (order)
+       const[insert_orders]= useMutation (order)
         let id, books, firstName, lastName, address,phone_number, amount;
         return (
             <div>
                 <form onSubmit={  e => {
                     e.preventDefault();
-                    insertOrder({variables: {
+                    insert_orders({objects: {
                             id: id.value,
                             amount: cart.amount,
                             books: {
-                                id: props.id// revisar que seguro que no esta bien
-                                , price : props.price // revisar que seguro que no esta bien
+                                id: props.id
+                                , price : props.price
                             },
                             firstName: firstName.value,
                             lastName: lastName.value,
                             address:address.value,
                             phone_number:phone_number.value}})
-                }
+                     }
 
                 }>
                     <fieldset>
@@ -44,7 +41,7 @@ let navigate = useNavigate();
                         <div className="space"></div>
                         <Check_box/>
                         <div className="space"></div>
-                        <button style={{textAlign: "center"}} type="submit"  onClick={()=>{ navigate("/thankPage")} } className="mainButton">Submit</button>
+                        <button style={{textAlign: "center"}} type="submit"  /*onClick={()=>{ navigate("/thankPage")} }*/ className="mainButton">Submit</button>
                     </fieldset>
                 </form>
             </div>
