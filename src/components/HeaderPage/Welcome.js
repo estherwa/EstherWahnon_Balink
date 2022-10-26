@@ -6,7 +6,6 @@ import {useSelector} from "react-redux";
 export default function Welcome(props) {
     let navigate = useNavigate();
     const cart = useSelector((state)=> state.cart);
-
     return (
         <>
             <div className="header">

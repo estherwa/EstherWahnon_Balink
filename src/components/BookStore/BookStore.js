@@ -22,15 +22,13 @@ const BookStore= (props) => {
             setTheBooks(result.data.data.books);
         }
         booksInStore().then(result =>
-
             console.log(result.data.data.books));
-
     }, [])
 
     let navigate = useNavigate();
     return (
         <>
-            <h1 className=" bigtitle">Welcome to {props.store} Store</h1>
+            <h1 className="bigtitle">Welcome to {props.store} Store</h1>
             <div>
                 {books?.map(({id, name, author, type}) => (
                     <div className="card">

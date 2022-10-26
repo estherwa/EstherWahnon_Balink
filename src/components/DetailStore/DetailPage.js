@@ -6,6 +6,7 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, updateCart} from "../../Reducers/actions";
 import {REACT_APP_URL} from "../../config/env";
+import{REACT_APP_DETAILS} from "../../config/env"
 import {bookStore} from "../orders";
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart)
@@ -36,10 +37,12 @@ export default function DetailPage(props) {
             dispatch(updateCart(books));
         }
     }
+
+    console.log({REACT_APP_DETAILS})
     return (
         <>
             <div >
-            <h1 className="bigtitle"> Book Details:</h1>
+            <h1 className="bigtitle">{REACT_APP_DETAILS}</h1>
             </div>
                 <div className="card-detail" >
                     <img src="../images/book4.png" width="400px" className="img-fluid" alt="logo"/>
@@ -52,8 +55,7 @@ export default function DetailPage(props) {
                 </div>
             <div className="card-detail"  >
                 <h1>BUY: {books.price} $</h1>
-                <h9> As an alternative, pre order the Kindle eBook instead to autoatically
-                receive on a day of release.</h9>
+                <h9> As an alternative, pre order the Kindle eBook instead to automatically receive on a day of release.</h9>
                 <div className="space"></div>
                 <button onClick={()=>{addCart()} } >Add to cart</button>
             </div>
