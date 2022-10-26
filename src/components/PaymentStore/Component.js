@@ -14,38 +14,14 @@ Checkbox.propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.bool
 };
-
-
-export const FirstName =(name, placeholder)=>{
-    const [firstName, setFirstName] = useState("");
-    return  <input className="firstName"  type="text" id="first_name"
-                   value={firstName}
-                   onChange={(e)=>setFirstName(e.target.value)}
+export const Value =(props)=>{
+    const [Value, setValue] = useState("");
+    return  <input className="value"  type="string"
+                   value={Value}
+                   onChange={(e)=>setValue(e.target.value)}
                    maxLength={10}
                    minLength={2}
-                   name={name} placeholder={placeholder} required/>
-}
-export const LastName = ()=>{
-    const [lastName, setLastName] = useState("");
-    return <input className="lastName"  type="text" id="lastname"
-                  value={lastName} onChange={(e)=>setLastName(e.target.value)}
-                  name="Lastname" placeholder="Last Name"  maxLength={10} required/>
-}
-export const Zip =()=>{
-    const [zipCode, setZipCode] = useState("");
-    return  <input className="zip" type="number" step="any"
-                   pattern="[0-9]+"
-                   value={zipCode} onChange={(e)=>setZipCode(e.target.value)}
-                   minLength={5}
-                   name="ZipCode" placeholder="Zip Code" />
-}
-export const PhoneNumber =()=>{
-    const [numberPhone, setPhoneNumber] = useState("")
-    return <input className="phoneNumber" type="text" step="any"
-                  name= "numberPhone" id="numberPhone"
-                  pattern="[0-9]+"
-                  value={numberPhone} onChange={(e)=>setPhoneNumber(e.target.value)}
-                  placeholder="Number phone" required/>
+                   name={props.name} placeholder={props.placeholder} required/>
 }
 export const CheckBox =()=>{
     const [otherCondition, setOtherCondition] = useState(false);

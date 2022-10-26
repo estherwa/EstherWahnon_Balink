@@ -12,6 +12,12 @@ function Cart() {
     function deleteItemFromCart(product){
         dispatch(deleteItem(product))
     }
+    function checkAmount(){
+           if(total===0)
+               alert("You haven't chosen any books, please return to the main page")
+            else
+                navigate("/paymentStore");
+    }
     function totalToPay(){
         let counter = 0
         cart?.forEach((book)=>{
@@ -43,7 +49,7 @@ function Cart() {
                                     <td className="delete" ><i onClick={()=>deleteItemFromCart(book)}>X</i></td>
                                     <td className="name" >{book.name}</td>
                                     <td className="price">{book.price} $</td>
-                                    <td className="quantity">1 </td>
+                                    <td className="quantity">{book.quantity}</td>
                                     <td onClick={()=>deleteItemFromCart(book)}>✖</td>
                                 </tr>
                             )
@@ -55,7 +61,7 @@ function Cart() {
                     </tbody>
                 </table>
             </div>
-            <div className="payment"  onClick={()=>navigate("/paymentStore")}>Proceed to payment</div>
+            <div className="payment"  onClick={checkAmount}>Proceed to payment</div>
         </div>
     )
 }

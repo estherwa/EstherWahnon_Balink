@@ -1,10 +1,10 @@
 import {gql} from "@apollo/client";
-export const order =`mutation Insert_orders($objects: [orders_insert_input!]!) {
+export const order =gql`mutation Insert_orders($objects: [orders_insert_input!]!) {
                                  insert_orders(objects: $objects) {
-                                   affected_rows
                                    returning {
                                      id
                                    }
+                                   affected_rows
                                  }
                              }`
 export const bookQuery =`query get($where: books_bool_exp) {

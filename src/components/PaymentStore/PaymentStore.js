@@ -1,41 +1,54 @@
 import React, {useEffect, useState} from "react";
-import * as PropTypes from "prop-types";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import itLocale from "i18n-iso-countries/langs/it.json";
-import axios from "axios";
 import * as countries from "i18n-iso-countries";
-import {Link, useNavigate, useSearchParams} from "react-router-dom";
+import { useNavigate, useSearchParams} from "react-router-dom";
 import './style.css'
 import {order} from '../orders'
-import {REACT_APP_URL} from "../../config/env";
-import  {LastName, FirstName, Zip, CheckBox, Check_box, PhoneNumber} from "./Component";
-
+import { Check_box, CheckBox, Value} from "./Component";
+import {useMutation} from "@apollo/client";
+import {useSelector} from "react-redux";
 export default function PaymentStore() {
-    countries.registerLocale(enLocale);
-    countries.registerLocale(itLocale);
-    const [saveBook] = useState([]);
+countries.registerLocale(enLocale);
+countries.registerLocale(itLocale);
+const [saveBook] = useState([]);
+const cart = useSelector((state)=> state.cart)
+let navigate = useNavigate();
+    const InsertOrder=()=> {
+       const[insertOrder]= useMutation (order)
+        let id, books, firstName, lastName, address,phone_number, amount;
+        return (
+            <div>
+                <form onSubmit={  e => {
+                    e.preventDefault();
+                    insertOrder({variables: {
+                            id: id.value,
+                            amount: cart.amount,
+                            books: {
+                                id: id.props// revisar que seguro que no esta bien
+                                , price : null // revisar que seguro que no esta bien
+                            },
+                            firstName: firstName.value,
+                            lastName: lastName.value,
+                            address:address.value,
+                            phone_number:phone_number.value}})
+                }
 
-    useEffect(()=>{
-        const insertOrders= async () => {
-            const result = await axios.post(REACT_APP_URL,{
-                query:{order}
-                ,variables:{
-                    "amount": null,
-                    "books": null,
-                    "firstName": FirstName.firstName,
-                    "lastName": LastName.lastName,
-                    "address":Zip.zipCode,
-                    "phone_number":PhoneNumber.numberPhone
-                    }
-            });
-           saveBook(result.data.data.order.Insert_orders);
-           console.log(result.data.data.order.Insert_orders)
-        }
-        insertOrders();
-    },[])
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        navigate("/thankPage");
+                }>
+                    <fieldset>
+                        <Value  ref={value => firstName= value} name= "First Name" placeholder="First Name"/>
+                        <Value  ref={value => lastName= value}  name= "Last Name" placeholder="Last Name"/>
+                        <Value   ref={value => address= value} name= "zip" placeholder="Zip Code" />
+                        <Value  ref={value => phone_number= value}  name="phone number"  placeholder="Phone number"/>
+                        <CheckBox/>
+                        <div className="space"></div>
+                        <Check_box/>
+                        <div className="space"></div>
+                        <button style={{textAlign: "center"}} type="submit"  onClick={()=>{ navigate("/thankPage")} } className="mainButton">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+        )
     }
     return (
         <>
@@ -46,15 +59,7 @@ export default function PaymentStore() {
                             <div className="space">
                             <form>
                                 <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
-                                <FirstName   name= "firstName" placeholder="First Name"/>
-                                <LastName/>
-                                <Zip/>
-                                <PhoneNumber/>
-                                <CheckBox/>
-                               <div className="space"></div>
-                                <Check_box/>
-                                <div className="space"></div>
-                                <button style={{textAlign: "center"}}  onClick={(routeChange)} type="submit" className="mainButton">Submit</button>
+                                <InsertOrder/>
                             </form>
                         </div>
                     </div>

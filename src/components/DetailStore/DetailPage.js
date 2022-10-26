@@ -10,7 +10,6 @@ import{REACT_APP_DETAILS} from "../../config/env"
 import {bookStore} from "../orders";
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart)
-    let navigate = useNavigate();
     const [books,saveBook] = useState([]);
     const [id] = useSearchParams();
     const dispatch = useDispatch();
@@ -25,7 +24,6 @@ export default function DetailPage(props) {
         }
         detailBook();
     },[])
-
     function addCart () {
         if(!(cart?.find((book)=>book.id===books.id))){
             books.quantity = 1
@@ -37,8 +35,6 @@ export default function DetailPage(props) {
             dispatch(updateCart(books));
         }
     }
-
-    console.log({REACT_APP_DETAILS})
     return (
         <>
             <div >
@@ -61,8 +57,6 @@ export default function DetailPage(props) {
             </div>
             <Outlet/>
         </>
-
     )
-
 }
 
