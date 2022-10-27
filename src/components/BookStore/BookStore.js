@@ -35,7 +35,7 @@ const BookStore= (props) => {
                         <div className="alert alert-warning">Loading ...</div>
                     ) :
                 books?.map(({id, name, author, type}) => (
-                    <div className="card">
+                    <div className="mainCard">
                         <img src="../images/book4.png" width="400px" className="img-fluid" alt="logo"/>
                         <h4><b>{name}</b></h4>
                         <p>Author: {author}</p>

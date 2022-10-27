@@ -15,9 +15,9 @@ export default function Stores(props) {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
         return data.stores.map(({ id, name, city,lang, address }) => (
-            <div className="card" >
-                <div className="card-header">
-                    <div className="card-header-bar">
+            <div  className="mainCard"                            >
+                <div >
+                    <div >
                         <img src="../images/book2.png" width="400px" className="img-fluid" alt="logo"/>
                         <h4><b>{name}</b></h4>
                         <p>City: {city}</p>
