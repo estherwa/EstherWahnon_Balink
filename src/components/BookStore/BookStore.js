@@ -10,6 +10,7 @@ const BookStore= (props) => {
     const [id] = useSearchParams();
     const [books, setTheBooks] = useState([]);
     let interchange = String(id).replace("=", "")
+    const [isLoading, setIsLoading] = useState(false);
     let data = {
         query: bookQuery
         , variables: {
@@ -18,19 +19,22 @@ const BookStore= (props) => {
     }
     useEffect(() => {
         const booksInStore = async () => {
+            setIsLoading(true);
             const result = await axios.post(REACT_APP_URL, data);
             setTheBooks(result.data.data.books);
         }
         booksInStore().then(result =>
             console.log(result.data.data.books));
+        setIsLoading(false);
     }, [])
-
-    let navigate = useNavigate();
     return (
         <>
             <h1 className="bigtitle">Welcome to {props.store} Store</h1>
             <div>
-                {books?.map(({id, name, author, type}) => (
+                {isLoading ? (
+                        <div className="alert alert-warning">Loading ...</div>
+                    ) :
+                books?.map(({id, name, author, type}) => (
                     <div className="card">
                         <img src="../images/book4.png" width="400px" className="img-fluid" alt="logo"/>
                         <h4><b>{name}</b></h4>

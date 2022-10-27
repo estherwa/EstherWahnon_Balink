@@ -6,6 +6,7 @@ import {deleteItem} from "../../Reducers/actions";
 let zero= 0
 function Cart() {
     const [total,setTotal] = useState(zero)
+    const [amount,setAmount] = useState(zero)
     const cart = useSelector((state)=> state.cart);
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -25,6 +26,9 @@ function Cart() {
         })
         setTotal(counter)
     }
+
+
+
     useEffect(()=>{
         totalToPay();
     },[cart])
@@ -34,10 +38,11 @@ function Cart() {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>x</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Subtract</th>
                         <th>Quantity</th>
+                        <th>Add</th>
                         <th>🗑️</th>
                     </tr>
                     </thead>
@@ -46,11 +51,22 @@ function Cart() {
                         cart?.map((book)=>{
                             return(
                                 <tr>
-                                    <td className="delete" ><i onClick={()=>deleteItemFromCart(book)}>X</i></td>
                                     <td className="name" >{book.name}</td>
                                     <td className="price">{book.price} $</td>
+                                    <td  onClick={()=> {
+                                        if(book.quantity !== 1)
+                                        {
+                                            book.quantity--;
+                                            setAmount(book.quantity);
+                                            totalToPay();
+                                        }
+
+                                    }}>➖</td>
                                     <td className="quantity">{book.quantity}</td>
-                                    <td onClick={()=>deleteItemFromCart(book)}>✖</td>
+                                    <td onClick={()=>{book.quantity++;
+                                            setAmount(book.quantity)
+                                            totalToPay() }}>➕</td>
+                                    <td onClick={()=>deleteItemFromCart(book)}>🗑️</td>
                                 </tr>
                             )
                         })

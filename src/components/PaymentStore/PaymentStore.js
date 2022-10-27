@@ -23,14 +23,13 @@ const cart = useSelector((state)=> state.cart)
                             amount: cart.amount,
                             books: {
                                 id: props.id
-                                , price : props.price
+                                ,price : props.price
                             },
                             firstName: firstName.value,
                             lastName: lastName.value,
                             address:address.value,
                             phone_number:phone_number.value
-                        }
-                        ]
+                        }]
                     })}}>
                     <fieldset>
                         <Value ref={value => firstName= value} name= "First Name" placeholder="First Name"/>
