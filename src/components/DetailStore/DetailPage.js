@@ -31,8 +31,8 @@ export default function DetailPage(props) {
     },[])
     function addCart () {
         if(!(cart?.find((book)=>book.id===books.id))){
-            books.quantity = 1
-            console.log(books.quantity)
+            books.quantity=1;
+
             dispatch(addToCart(books));
         }
         else{
@@ -64,7 +64,7 @@ export default function DetailPage(props) {
                 <h1>BUY: {books.price} $</h1>
                 <h9> As an alternative, pre order the Kindle eBook instead to automatically receive on a day of release.</h9>
                 <div className="space"></div>
-                <button onClick={()=>{addCart()} } >Add to cart</button>
+                <button onClick={()=>{addCart()}} >Add to cart</button>
             </div>
             <Outlet/>
         </>

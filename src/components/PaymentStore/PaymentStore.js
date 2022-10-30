@@ -7,17 +7,28 @@ import {order} from '../orders'
 import { Check_box, CheckBox, Value} from "./Component";
 import {useMutation} from "@apollo/client";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
+
 export default function PaymentStore() {
 countries.registerLocale(enLocale);
 countries.registerLocale(itLocale);
+
 const cart = useSelector((state)=> state.cart)
+    let navigate = useNavigate();
+
+
+
     const InsertOrder=(props)=> {
        const[insert_orders]= useMutation (order)
         let id, books, firstName, lastName, address,phone_number, amount;
+
         return (
             <div>
                 <form onSubmit={ e => {
                     e.preventDefault();
+                    navigate("/thankPage")
+
                     insert_orders( {"objects": [{
                             id: id.value,
                             amount: cart.amount,
@@ -30,7 +41,9 @@ const cart = useSelector((state)=> state.cart)
                             address:address.value,
                             phone_number:phone_number.value
                         }]
-                    })}}>
+                    })}
+
+                }>
                     <fieldset>
                         <Value ref={value => firstName= value} name= "First Name" placeholder="First Name"/>
                         <Value ref={value => lastName= value}  name= "Last Name" placeholder="Last Name"/>
@@ -40,7 +53,7 @@ const cart = useSelector((state)=> state.cart)
                         <div className="space"></div>
                         <Check_box/>
                         <div className="space"></div>
-                        <button style={{textAlign: "center"}} type="submit"  /*onClick={()=>{ navigate("/thankPage")} }*/ className="mainButton">Submit</button>
+                         <button style={{textAlign: "center"}} type="submit"  className="mainButton">Submit</button>
                     </fieldset>
                 </form>
             </div>
