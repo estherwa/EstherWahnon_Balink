@@ -13,11 +13,8 @@ import {useNavigate} from "react-router-dom";
 export default function PaymentStore() {
 countries.registerLocale(enLocale);
 countries.registerLocale(itLocale);
-
-const cart = useSelector((state)=> state.cart)
     let navigate = useNavigate();
-
-
+const cart = useSelector((state)=> state.cart)
 
     const InsertOrder=(props)=> {
        const[insert_orders]= useMutation (order)
@@ -26,8 +23,8 @@ const cart = useSelector((state)=> state.cart)
         return (
             <div>
                 <form onSubmit={ e => {
-                    e.preventDefault();
                     navigate("/thankPage")
+                    e.preventDefault();
 
                     insert_orders( {"objects": [{
                             id: id.value,
@@ -66,10 +63,9 @@ const cart = useSelector((state)=> state.cart)
                     <div className="main">
                         <div className="row">
                             <div className="space">
-                            <form>
+                            <form  onSubmit={ navigate("/thankPage")}></form>
                                 <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
                                 <InsertOrder/>
-                            </form>
                         </div>
                     </div>
                     </div>
