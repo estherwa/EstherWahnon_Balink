@@ -14,27 +14,27 @@ Checkbox.propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.bool
 };
-export const Value =(props)=>{
-    const [Value, setValue] = useState("");
-    return  <input className="value"  type="string"
-                   value={Value}
-                   onChange={(e)=>setValue(e.target.value)}
-                   maxLength={10}
-                   minLength={2}
+export const Input =(props)=>{
+    const [Input, setInput] = useState("");
+    return  <input className={props.value}  type={props.type}
+                   value={Input}
+                   onChange={(e)=>setInput(e.target.value)}
+                   maxLength={props.maxLength}
+                   minLength={props.minLength}
                    name={props.name} placeholder={props.placeholder} required/>
 }
-export const CheckBox =()=>{
+export const CheckBox =(props)=>{
     const [otherCondition, setOtherCondition] = useState(false);
     return <Checkbox
-        className="checkBox"  value={otherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
-        label=" Any comments"
-        name="otherConditions"
+        className={props.className}  value={otherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
+        label={props.label}
+        name={props.name}
     />
 }
-export const Check_box = ()=>{
+export const Check_box = (props)=>{
     const [otherConditionsText, setOtherConditionsText] = useState("");
     const [otherCondition, setOtherCondition] = useState(false);
-    return <input className="check_box" type="text" id="check_box" name="Other conditions"
-                  placeholder="Any comments" value={otherConditionsText} onChange={(e)=>setOtherConditionsText(e.target.value)}
+    return <input className={props.className} type={props.type} id={props.id} name={props.name}
+                  placeholder={props.placeholder} value={otherConditionsText} onChange={(e)=>setOtherConditionsText(e.target.value)}
                   disabled={!otherCondition} />
 }
