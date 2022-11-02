@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import  PaymentStore  from './PaymentStore'
 import * as PropTypes from "prop-types";
 const Checkbox = ({ label, value, onChange }) => {
     return (
@@ -23,7 +22,6 @@ export const Input =(props)=>{
     });
     return  <input name={props.name} className={props.className}  type={props.type}
                     value={formState.name}
-
                    onChange={(e) =>
                        setFormState({
                            ...formState,

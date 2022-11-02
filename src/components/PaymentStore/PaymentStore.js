@@ -5,34 +5,44 @@ import * as countries from "i18n-iso-countries";
 import './style.css'
 import {order} from '../orders'
 import {Check_box, CheckBox, Input} from "./Component";
-import {useMutation} from "@apollo/client";
-import {useNavigate} from "react-router-dom";
-
+import {gql, useMutation} from "@apollo/client";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {useSelector} from "react-redux";
  function PaymentStore() {
      countries.registerLocale(enLocale);
      countries.registerLocale(itLocale);
      let navigate = useNavigate();
-
-
-     //  const cart = useSelector((state) => state.cart)
+      const cart = useSelector((state) => state.cart)
      const InsertOrder = (props) => {
          const [formState] = useState({
              lastName: '',
              firstName: '',
              address: '',
              phone_number: ''
+         });
+         const [createOrder, { data, loading, error }] = useMutation(order,{
+             variables:{
+             object: {
+                 "amount": 7,
+                 "books": {
+                     id: props.id
+                     , price: props.price
+                 },
+                "firstName" : formState.firstName,
+                 "lastName": formState.lastName,
+                 "address": formState.address,
+                 "phone_number": formState.phone_number
+                }}
+             })
 
-         });
-         const [createOrder] = useMutation(order, {
-             variables: {
-                 firstName: formState.firstName,
-                 lastName: formState.lastName,
-                 address: formState.address,
-                 phone_number: formState.phone_number
-             }
-         });
+         useEffect(() => {console.log(loading, error, data)});
+         if (loading) return 'Submitting...';
+         if (error) return `Submission error! ${error.message}`;
+
+         console.log("insert_orders", createOrder)
 
          const handleSubmit = (event) => {
+             console.log(cart.amount)
              const formData = new FormData(event.currentTarget);
              event.preventDefault();
              for (let [key, value] of formData.entries()) {
@@ -40,12 +50,10 @@ import {useNavigate} from "react-router-dom";
              }
 
              createOrder().then(r => console.log("response", r));
-             navigate("/thankPage")
+             // navigate("/thankPage")
          };
          return (
-             <div>
                  <form onSubmit={handleSubmit}>
-
                      <Input  value={formState.firstName}
                             name="firstName" id="name" className= "value" placeholder="First Name" type="text" minLength="2"
                               maxLength="10"/>
@@ -62,12 +70,9 @@ import {useNavigate} from "react-router-dom";
                                 placeholder="Any comments"/>
                      <div className="space"></div>
                      <button style={{textAlign: "center"}} type="submit" className="mainButton">Submit</button>
-
                  </form>
-             </div>
          )
      };
-
      return (
          <>
              <p style={{textAlign: "center"}}>
@@ -84,10 +89,6 @@ import {useNavigate} from "react-router-dom";
                  </div>
              </p>
          </>
-
      )
-
-
-
 }export default PaymentStore
 

@@ -7,7 +7,7 @@ import {orederReducer} from "./Reducers";
 import reportWebVitals from './reportWebVitals';
 import {ApolloClient, ApolloProvider, gql, InMemoryCache} from "@apollo/client";
 import {Provider} from "react-redux";
-import {queryStore} from "./components/orders";
+import {bookQuery, order, queryStore} from "./components/orders";
 import {REACT_APP_URL} from "./config/env";
 const store = createStore(orederReducer);
 const client = new ApolloClient({
@@ -19,6 +19,7 @@ console.log(REACT_APP_URL)
 client
     .query({
         query: queryStore,
+         order
     })
     .then((result) => console.log(result));
 const root = ReactDOM.createRoot(document.getElementById('root'));

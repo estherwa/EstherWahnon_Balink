@@ -1,5 +1,6 @@
 import {Link, Route} from "react-router-dom";
 import {Outlet} from "react-router";
+import React from "react";
 export default function ThankPage(props) {
     return (
         <>
@@ -22,6 +23,8 @@ export default function ThankPage(props) {
                 <div className="_footer">
                     <Link to={"/"}  >Back to homepage</Link>
                 </div>
+
+
             </div>
             <Outlet/>
         </>
