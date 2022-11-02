@@ -7,12 +7,11 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
 import {useState} from "react";
-import PaymentStore from "./components/PaymentStore/PaymentStore";
 import ThankPage from "./components/ThankPage/ThankPage";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import DetailPage from "./components/DetailStore/DetailPage";
 import CartPage from  "./components/CartStore/CartPage"
-
+import PaymentStore from '../src/components/PaymentStore/PaymentStore';
 import {REACT_APP_URL} from "./config/env";
 const client = new ApolloClient({
     uri: REACT_APP_URL,
@@ -22,7 +21,10 @@ const App= () => {
 
     const [store, setStore] = useState("")
     return (
+
+
         <>
+
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Welcome/>}>
@@ -35,7 +37,9 @@ const App= () => {
                         <Route path={"*"} element={<NotFound/>}/>
                     </Route>
                 </Routes>
+
             </BrowserRouter>
+            
         </>
     );
 }

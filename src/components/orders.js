@@ -3,6 +3,7 @@ export const order =gql`mutation Insert_orders($objects: [orders_insert_input!]!
                                  insert_orders(objects: $objects) {
                                    returning {
                                      id
+                                   
                                    }
                                    affected_rows
                                  }

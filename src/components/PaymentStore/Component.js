@@ -15,13 +15,24 @@ Checkbox.propTypes = {
     value: PropTypes.bool
 };
 export const Input =(props)=>{
-    const [Input, setInput] = useState("");
-    return  <input className={props.value}  type={props.type}
-                   value={Input}
-                   onChange={(e)=>setInput(e.target.value)}
+    const [formState, setFormState] = useState({
+        lastName: '',
+        firstName: '',
+        address: '',
+        phone_number: ''
+    });
+    return  <input name={props.name} className={props.className}  type={props.type}
+                    value={formState.name}
+
+                   onChange={(e) =>
+                       setFormState({
+                           ...formState,
+                           name : e.target.value
+                       })
+                   }
                    maxLength={props.maxLength}
                    minLength={props.minLength}
-                   name={props.name} placeholder={props.placeholder} required/>
+                    placeholder={props.placeholder} required/>
 }
 export const CheckBox =(props)=>{
     const [otherCondition, setOtherCondition] = useState(false);
