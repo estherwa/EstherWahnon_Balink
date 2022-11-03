@@ -11,7 +11,7 @@ import ThankPage from "./components/ThankPage/ThankPage";
 import {ApolloClient, InMemoryCache} from "@apollo/client";
 import DetailPage from "./components/DetailStore/DetailPage";
 import CartPage from  "./components/CartStore/CartPage"
-import PaymentStore from '../src/components/PaymentStore/PaymentStore';
+import PaymentStore from './components/PaymentStore/PaymentStore';
 import {REACT_APP_URL} from "./config/env";
 const client = new ApolloClient({
     uri: REACT_APP_URL,

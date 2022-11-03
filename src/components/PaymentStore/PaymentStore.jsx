@@ -8,22 +8,41 @@ import {Check_box, CheckBox, Input} from "./Component";
 import {gql, useMutation} from "@apollo/client";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useSelector} from "react-redux";
+
  function PaymentStore() {
-     countries.registerLocale(enLocale);
-     countries.registerLocale(itLocale);
-     let navigate = useNavigate();
-      const cart = useSelector((state) => state.cart)
+ countries.registerLocale(enLocale);
+ countries.registerLocale(itLocale);
+ let navigate = useNavigate();
+
+ const cart = useSelector((state) => state.cart)
+ const [formState] = useState({
+         lastName: '',
+         firstName: '',
+         address: '',
+         phone_number: ''
+ });
+     function sleep(ms) {
+         return new Promise(resolve => setTimeout(resolve, ms));
+     }
+
      const InsertOrder = (props) => {
-         const [formState] = useState({
-             lastName: '',
-             firstName: '',
-             address: '',
-             phone_number: ''
-         });
+
+         const handleSubmit = (event) => {
+         console.log("cart", cart.amount)
+         const formData = new FormData(event.currentTarget);
+         event.preventDefault();
+         for (let [key, value] of formData.entries()) {
+             console.log(key, value);
+         }
+
+         createOrder().then(r => console.log("response", r));
+         sleep(100000)
+
+     };
          const [createOrder, { data, loading, error }] = useMutation(order,{
              variables:{
              object: {
-                 "amount": 7,
+                 "amount": 5,
                  "books": {
                      id: props.id
                      , price: props.price
@@ -38,20 +57,9 @@ import {useSelector} from "react-redux";
          useEffect(() => {console.log(loading, error, data)});
          if (loading) return 'Submitting...';
          if (error) return `Submission error! ${error.message}`;
-
+         if (data)  return navigate("/thankPage")
          console.log("insert_orders", createOrder)
 
-         const handleSubmit = (event) => {
-             console.log(cart.amount)
-             const formData = new FormData(event.currentTarget);
-             event.preventDefault();
-             for (let [key, value] of formData.entries()) {
-                 console.log(key, value);
-             }
-
-             createOrder().then(r => console.log("response", r));
-             // navigate("/thankPage")
-         };
          return (
                  <form onSubmit={handleSubmit}>
                      <Input  value={formState.firstName}
@@ -80,10 +88,11 @@ import {useSelector} from "react-redux";
                      <div className="main">
                          <div className="row">
                              <div className="space">
-                                 <form onSubmit={navigate("/thankPage")}></form>
-                                 <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
-                                 <InsertOrder/>
+                             <img src="../images/payment.jpg" width="500px" className="img-fluid" alt="logo"/>
                              </div>
+                             <p style={{textAlign: "center"}}>
+                             <InsertOrder/>
+                             </p>
                          </div>
                      </div>
                  </div>
