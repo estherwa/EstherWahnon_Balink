@@ -6,40 +6,28 @@ import './style.css'
 import {order} from '../orders'
 import {Check_box, CheckBox, Input} from "./Component";
 import {gql, useMutation} from "@apollo/client";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import {useSelector} from "react-redux";
-
- function PaymentStore() {
- countries.registerLocale(enLocale);
- countries.registerLocale(itLocale);
- let navigate = useNavigate();
-
- const cart = useSelector((state) => state.cart)
- const [formState] = useState({
-         lastName: '',
-         firstName: '',
-         address: '',
-         phone_number: ''
- });
-     function sleep(ms) {
-         return new Promise(resolve => setTimeout(resolve, ms));
-     }
-
-     const InsertOrder = (props) => {
-
-         const handleSubmit = (event) => {
-         console.log("cart", cart.amount)
+import {useNavigate} from "react-router-dom";
+countries.registerLocale(enLocale);
+countries.registerLocale(itLocale);
+let createOrder, loading, error,data=null;
+//**********************************************************************************************************************
+const handleSubmit = (event) => {
          const formData = new FormData(event.currentTarget);
          event.preventDefault();
          for (let [key, value] of formData.entries()) {
              console.log(key, value);
          }
-
          createOrder().then(r => console.log("response", r));
-         sleep(100000)
-
-     };
-         const [createOrder, { data, loading, error }] = useMutation(order,{
+};
+//**********************************************************************************************************************
+const InsertOrder = (props) => {
+    const [formState] = useState({
+        lastName: '',
+        firstName: '',
+        address: '',
+        phone_number: ''
+    });
+  [createOrder,{ data, loading, error }] = useMutation(order,{
              variables:{
              object: {
                  "amount": 5,
@@ -51,15 +39,14 @@ import {useSelector} from "react-redux";
                  "lastName": formState.lastName,
                  "address": formState.address,
                  "phone_number": formState.phone_number
-                }}
-             })
-
-         useEffect(() => {console.log(loading, error, data)});
+             }}
+  })
+  useEffect(() => {console.log(loading, error, data)});
+    let navigate = useNavigate();
          if (loading) return 'Submitting...';
          if (error) return `Submission error! ${error.message}`;
-         if (data)  return navigate("/thankPage")
+          if (data)  return navigate("/thankPage")
          console.log("insert_orders", createOrder)
-
          return (
                  <form onSubmit={handleSubmit}>
                      <Input  value={formState.firstName}
@@ -80,8 +67,10 @@ import {useSelector} from "react-redux";
                      <button style={{textAlign: "center"}} type="submit" className="mainButton">Submit</button>
                  </form>
          )
-     };
-     return (
+};
+//**********************************************************************************************************************
+function PaymentStore() {
+  return (
          <>
              <p style={{textAlign: "center"}}>
                  <div className="container-fluid">
