@@ -5,19 +5,24 @@ import * as countries from "i18n-iso-countries";
 import './style.css'
 import {order} from '../orders'
 import {Check_box, CheckBox, Input} from "./Component";
-import {gql, useMutation} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {useNavigate} from "react-router-dom";
 countries.registerLocale(enLocale);
 countries.registerLocale(itLocale);
 let createOrder, loading, error,data=null;
 //**********************************************************************************************************************
-const handleSubmit = (event) => {
-         const formData = new FormData(event.currentTarget);
-         event.preventDefault();
-         for (let [key, value] of formData.entries()) {
-             console.log(key, value);
-         }
-         createOrder().then(r => console.log("response", r));
+const handleSubmit = async (e) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(2);
+        },2000)
+        const formData = new FormData(e.currentTarget);
+        e.preventDefault();
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+        createOrder()
+    })
 };
 //**********************************************************************************************************************
 const InsertOrder = (props) => {
@@ -27,7 +32,7 @@ const InsertOrder = (props) => {
         address: '',
         phone_number: ''
     });
-  [createOrder,{ data, loading, error }] = useMutation(order,{
+    [createOrder,{ data, loading, error }] = useMutation(order,{
              variables:{
              object: {
                  "amount": 5,
@@ -50,10 +55,11 @@ const InsertOrder = (props) => {
          return (
                  <form onSubmit={handleSubmit}>
                      <Input  value={formState.firstName}
-                            name="firstName" id="name" className= "value" placeholder="First Name" type="text" minLength="2"
-                              maxLength="10"/>
+                            name="firstName" id="name" className= "value" placeholder="First Name" type="text"
+                             minLength="2" maxLength="10"/>
                      <Input  value={formState.lastName}
-                            className= "value" name="lastName" placeholder="Last Name" type="text" minLength="2" maxLength="10"/>
+                            className= "value" name="lastName" placeholder="Last Name" type="text" minLength="2"
+                             maxLength="10"/>
                      <Input  value={formState.address} name="address"
                              placeholder="Zip Code" type="number" className= "value" minLength="2" maxLength="10"/>
                      <Input  value={formState.phone_number}
@@ -89,4 +95,5 @@ function PaymentStore() {
          </>
      )
 }export default PaymentStore
+//**********************************************************************************************************************
 
