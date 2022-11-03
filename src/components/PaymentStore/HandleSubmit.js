@@ -1,6 +1,4 @@
 import {createOrder} from "./Order";
-
-
 export const handleSubmit = async (e) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {

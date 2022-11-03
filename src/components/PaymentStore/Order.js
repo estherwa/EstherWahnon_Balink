@@ -47,10 +47,10 @@ export const InsertOrder = (props) => {
                     name="phone_number"
                     placeholder="Phone number"  type="number" minLength="2" maxLength="10"/>
             <CheckBox label=" Any comments"  name="otherConditions" checkBox/>
-            <Space></Space>
+            <Space/>
             <Check_box  type="text" id="check_box" name="Other conditions"
                         placeholder="Any comments"/>
-            <Space></Space>
+            <Space/>
             <Button  type="submit" >Submit</Button>
 
         </form>
