@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import * as PropTypes from "prop-types";
+import {Value, Checkbox} from "./style";
 const Checkbox = ({ label, value, onChange }) => {
     return (
         <label>
@@ -20,7 +21,7 @@ export const Input =(props)=>{
         address: '',
         phone_number: ''
     });
-    return  <input name={props.name} className={props.className}  type={props.type}
+    return  <Value name={props.name} className={props.className}  type={props.type}
                     value={formState.name}
                    onChange={(e) =>
                        setFormState({
@@ -34,7 +35,7 @@ export const Input =(props)=>{
 }
 export const CheckBox =(props)=>{
     const [otherCondition, setOtherCondition] = useState(false);
-    return <Checkbox
+    return < Checkbox
         className={props.className}  value={otherCondition} onChange={(e)=>setOtherCondition(e.target.checked)}
         label={props.label}
         name={props.name}
