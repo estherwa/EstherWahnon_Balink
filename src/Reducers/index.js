@@ -5,13 +5,17 @@ const initialState ={
 export const orederReducer = (state=initialState,action) => {
     switch(action.type){
         case ADD_TO_CART:
+
+            action.payload.quantity=1;
             return{...state,cart:[...state.cart,action.payload]}
         case UPDATE_CART:
-            return{...state,cart:[...state.cart?.map((v)=>{
-                    if(v.id==action.payload.id){
-                        v.quantity++
-                        return v}
-                    else{return v}})]}
+            const a=[...state.cart?.map((v)=>{
+                if(v.id==action.payload.id){
+                    v.quantity++
+                    return v}
+                else{return v}})];
+            console.log(a)
+            return{...state,cart:a}
         case DELETE_FROM_CART:
             return {...state, cart:state.cart?.filter((v)=>v.id!=action.payload.id)}
         default:

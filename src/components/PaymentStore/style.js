@@ -35,7 +35,7 @@ export const Checkbox =styled.input`
   border: none;
   border-radius: 3px;
 `
-export const Value =styled.textarea`
+export const TextArea =styled.textarea`
   grid-gap: 10px;
   margin: 10px;
   width: 1300px;

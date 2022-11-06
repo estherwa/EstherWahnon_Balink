@@ -8,8 +8,6 @@ import {addToCart, updateCart} from "../../Reducers/actions";
 import {REACT_APP_URL} from "../../config/env";
 import{REACT_APP_DETAILS} from "../../config/env"
 import {bookStore} from "../orders";
-
-
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart);
     const [isLoading, setIsLoading] = useState(false);
@@ -30,13 +28,12 @@ export default function DetailPage(props) {
         detailBook();
     },[])
     function addCart () {
+        console.log("in add cart")
         if(!(cart?.find((book)=>book.id===books.id))){
-            books.quantity=1;
-
             dispatch(addToCart(books));
         }
         else{
-            console.log(books.quantity)
+            console.log("update cart");
             dispatch(updateCart(books));
         }
     }
@@ -45,8 +42,6 @@ export default function DetailPage(props) {
             <div >
             <h1 className="bigtitle">{REACT_APP_DETAILS}</h1>
             </div>
-
-
             {isLoading ? (
                     <div className="alert alert-warning">Loading ...</div>
                 ) :

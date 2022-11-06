@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import * as PropTypes from "prop-types";
-import {Value} from "./style";
+import {TextArea, Value} from "./style";
 const Checkbox = ({ label, value, onChange }) => {
     return (
         <label>
@@ -21,7 +21,7 @@ export const Input =(props)=>{
         address: '',
         phone_number: ''
 });
-    return  <Value name={props.name} className={props.className}  type={props.type}
+    return  <TextArea name={props.name} className={props.className}  type={props.type}
                     value={formState.name}
                    onChange={(e) =>
                        setFormState({

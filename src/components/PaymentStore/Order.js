@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useMutation} from "@apollo/client";
 import {order} from "../orders";
 import {useNavigate} from "react-router-dom";
-import {Button, Space, Value} from "./style";
+import {Button, Space} from "./style";
 import {Check_box, CheckBox, Input} from "./Component";
 import {handleSubmit} from "./HandleSubmit";
 export let createOrder, loading, error,data=null;
@@ -13,18 +13,20 @@ export const InsertOrder = (props) => {
         address: '',
         phone_number: ''
     });
+    const var1=formState.firstName, var2=formState.lastName, var3=formState.address, var4=formState.phone_number,
+    var5=props.id, var6= props.price ;
     [createOrder,{ data, loading, error }] = useMutation(order,{
         variables:{
             object: {
                 "amount": 5,
                 "books": {
-                    id: props.id
-                    , price: props.price
+                    id: var5,
+                    price: var6
                 },
-                "firstName" : formState.firstName,
-                "lastName": formState.lastName,
-                "address": formState.address,
-                "phone_number": formState.phone_number
+                "firstName" : var1,
+                "lastName": var2,
+                "address": var3,
+                "phone_number": var4
             }}
     })
     useEffect(() => {console.log(loading, error, data)});
@@ -52,7 +54,6 @@ export const InsertOrder = (props) => {
                         placeholder="Any comments"/>
             <Space/>
             <Button  type="submit" >Submit</Button>
-
         </form>
     )
 };

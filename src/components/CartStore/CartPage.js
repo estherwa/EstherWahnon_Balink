@@ -26,9 +26,6 @@ function Cart() {
         })
         setTotal(counter)
     }
-
-
-
     useEffect(()=>{
         totalToPay();
     },[cart])
