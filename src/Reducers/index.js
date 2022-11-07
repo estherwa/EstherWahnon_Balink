@@ -1,23 +1,32 @@
-import {ADD_TO_CART,UPDATE_CART,DELETE_FROM_CART} from './actions/index'
+import {ADD_TO_CART, UPDATE_CART, DELETE_FROM_CART, addToCart} from './actions/index'
 const initialState ={
-    cart:[],
+    quantity:0,
+    count:0,
+    cart:new Map()
+    ,
 }
-export const orederReducer = (state=initialState,action) => {
+export const cartReducer = (state=initialState,action) => {
     switch(action.type){
         case ADD_TO_CART:
+            console.log("add to cart")
+            const book = {
+                ...action.payload,
+                quantity: 1,
+            }
 
-            action.payload.quantity=1;
-            return{...state,cart:[...state.cart,action.payload]}
+            state.cart.size=1;
+            state.cart.set(book.id,book);
+            console.log(state.cart);
+            return state;
         case UPDATE_CART:
-            const a=[...state.cart?.map((v)=>{
-                if(v.id==action.payload.id){
-                    v.quantity++
-                    return v}
-                else{return v}})];
-            console.log(a)
-            return{...state,cart:a}
+            const bookToUpdated = state.cart?.get(action.payload.id)
+            state.cart.quantity++;
+            bookToUpdated.quantity++;
+            state.cart?.set(action.payload.id, bookToUpdated);
+            return state;
         case DELETE_FROM_CART:
-            return {...state, cart:state.cart?.filter((v)=>v.id!=action.payload.id)}
+            state.cart?.delete(action.payload.id)
+            return state
         default:
             return state;
     }

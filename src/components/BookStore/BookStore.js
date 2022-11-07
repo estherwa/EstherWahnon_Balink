@@ -24,7 +24,7 @@ const BookStore= (props) => {
             setTheBooks(result.data.data.books);
         }
         booksInStore().then(result =>
-            console.log(result.data.data.books));
+            console.log("show me results",result.data.data.books));
         setIsLoading(false);
     }, [])
     return (

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Outlet} from "react-router";
-import {Link, useNavigate, useSearchParams} from "react-router-dom";
+import { useSearchParams} from "react-router-dom";
 import './detailPage.css'
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,6 +10,7 @@ import{REACT_APP_DETAILS} from "../../config/env"
 import {bookStore} from "../orders";
 export default function DetailPage(props) {
     let cart = useSelector((state)=> state.cart);
+    const [total,setTotal] = useState(0)
     const [isLoading, setIsLoading] = useState(false);
     const [books,saveBook] = useState([]);
     const [id] = useSearchParams();
@@ -28,13 +29,17 @@ export default function DetailPage(props) {
         detailBook();
     },[])
     function addCart () {
-        console.log("in add cart")
-        if(!(cart?.find((book)=>book.id===books.id))){
+        console.log(cart?.quantity)
+        if(!cart?.get(books.id)){
+            console.log("in add cart")
             dispatch(addToCart(books));
+            setTotal(cart?.quantity)
+
         }
         else{
             console.log("update cart");
             dispatch(updateCart(books));
+            setTotal(cart?.quantity)
         }
     }
     return (
@@ -50,14 +55,14 @@ export default function DetailPage(props) {
                     <h4><b>{books.name}</b></h4>
                     <p>Author : {books.author}</p>
                     <p> Type : {books.type}</p>
-                    <p> Description : <div className="space"></div> {books.description}</p>
+                    <div> Description : <div className="space"></div> {books.description}</div>
                     <p> Language : {books.language} 🌐</p>
                     <p> Ratings : {books.ratings} ⭐</p>
                 </div>
             }
             <div className="card-detail"  >
                 <h1>BUY: {books.price} $</h1>
-                <h9> As an alternative, pre order the Kindle eBook instead to automatically receive on a day of release.</h9>
+                <h5> As an alternative, pre order the Kindle eBook instead to automatically receive on a day of release.</h5>
                 <div className="space"></div>
                 <button onClick={()=>{addCart()}} >Add to cart</button>
             </div>

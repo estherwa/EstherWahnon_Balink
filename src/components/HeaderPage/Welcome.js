@@ -6,13 +6,14 @@ import {useSelector} from "react-redux";
 export default function Welcome(props) {
     let navigate = useNavigate();
     const cart = useSelector((state)=> state.cart);
+    console.log(cart)
     return (
         <>
             <div className="header">
                 <img   src="../images/logo.png"
                       width="100px" onClick={()=>{ navigate("/")} } />
                 <div className="header-right">
-                    <div >{cart?.length}</div>
+                    <div >{cart.size}</div>
                     <img   src="../images/empty_cart.png"
                            width="50px" onClick={()=>{ navigate("/cartPage")} } />
                     </div>
