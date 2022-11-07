@@ -9,7 +9,11 @@ import {ApolloClient, ApolloProvider, gql, InMemoryCache} from "@apollo/client";
 import {Provider} from "react-redux";
 import {bookQuery, order, queryStore} from "./components/orders";
 import {REACT_APP_URL} from "./config/env";
-const store = createStore(cartReducer);
+
+const store = createStore(
+    cartReducer, /* preloadedState, */
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 const client = new ApolloClient({
     uri: REACT_APP_URL,
     cache: new InMemoryCache(),

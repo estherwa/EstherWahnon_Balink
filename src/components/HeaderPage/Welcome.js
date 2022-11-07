@@ -3,10 +3,11 @@ import {Outlet} from "react-router";
 import {Link, useNavigate} from "react-router-dom";
 import './welcome.css'
 import {useSelector} from "react-redux";
-export default function Welcome(props) {
+const Welcome = (props) => {
     let navigate = useNavigate();
-    const cart = useSelector((state)=> state.cart);
-    console.log(cart)
+    const {cart} = useSelector((state)=> state);
+
+
     return (
         <>
             <div className="header">
@@ -23,4 +24,6 @@ export default function Welcome(props) {
     )
 
 }
+
+export default Welcome;
 

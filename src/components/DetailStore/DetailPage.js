@@ -9,12 +9,13 @@ import {REACT_APP_URL} from "../../config/env";
 import{REACT_APP_DETAILS} from "../../config/env"
 import {bookStore} from "../orders";
 export default function DetailPage(props) {
-    let cart = useSelector((state)=> state.cart);
+    const {cart} = useSelector((state)=> state);
     const [total,setTotal] = useState(0)
     const [isLoading, setIsLoading] = useState(false);
     const [books,saveBook] = useState([]);
     const [id] = useSearchParams();
     const dispatch = useDispatch();
+    console.log('indetailpage',{cart});
     useEffect(()=>{
         const detailBook = async () => {
             setIsLoading(true);

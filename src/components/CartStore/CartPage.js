@@ -9,8 +9,8 @@ let zero= 0
 function Cart() {
     const [total,setTotal] = useState(zero)
     const [amount,setAmount] = useState(zero)
-    const cart = useSelector((state)=> state.cart);
-    const [ dispatch]= useReducer(cartReducer, {count:0})
+    const {cart} = useSelector((state)=> state);
+    const dispatch= useDispatch();
     let navigate = useNavigate();
     function deleteItemFromCart(product){
         dispatch(deleteItem(product))

@@ -13,6 +13,7 @@ import DetailPage from "./components/DetailStore/DetailPage";
 import CartPage from  "./components/CartStore/CartPage"
 import PaymentStore from './components/PaymentStore/PaymentStore';
 import {REACT_APP_URL} from "./config/env";
+
 const client = new ApolloClient({
     uri: REACT_APP_URL,
     cache: new InMemoryCache(),
